@@ -1,8 +1,11 @@
 {
   "name": "custom-expo-template",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "index.ts",
-  "keywords": ["expo", "template"],
+  "keywords": [
+    "expo",
+    "template"
+  ],
   "files": [
     "*",
     "app",
