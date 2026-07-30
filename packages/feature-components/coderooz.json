@@ -1,0 +1,12 @@
+{
+  "name": "components",
+  "version": "0.1.0",
+  "description": "Reusable UI components: buttons, inputs, dialogs, sheets, snackbars, states, and screen layouts",
+  "dependencies": {
+    "@gorhom/bottom-sheet": "^5.1.0",
+    "react-native-reanimated": "~4.1.1",
+    "react-native-safe-area-context": "~5.6.0"
+  },
+  "requires": ["design-system"],
+  "provides": ["ui", "interactions", "states", "layouts"]
+}

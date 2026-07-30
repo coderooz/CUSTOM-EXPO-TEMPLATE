@@ -1,0 +1,19 @@
+{
+  "name": "@coderooz/feature-dynamic-pages",
+  "version": "1.0.3",
+  "description": "Configuration-driven dynamic page builder: runtime page resolution from external configs, template/component/action registries, hot-reload engine",
+  "license": "MIT",
+  "author": "Coderooz (https://github.com/coderooz)",
+  "files": ["coderooz.json", "template"],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/coderooz/expo-template-coderooz.git"
+  },
+  "bugs": {
+    "url": "https://github.com/coderooz/expo-template-coderooz/issues"
+  },
+  "homepage": "https://coderooz.github.io/expo-template-coderooz/",
+  "keywords": ["expo", "coderooz", "dynamic-pages", "config-driven", "cms", "react-native"],
+  "engines": { "node": ">=18.0.0" },
+  "publishConfig": { "access": "public" }
+}
