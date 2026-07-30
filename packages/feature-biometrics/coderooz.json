@@ -1,0 +1,14 @@
+{
+  "name": "biometrics",
+  "version": "0.1.0",
+  "description": "Biometric authentication with fingerprint, Face ID, and secure credential storage",
+  "hooks": {
+    "env": {
+      "EXPO_PUBLIC_BIOMETRICS_ENABLED": "true"
+    }
+  },
+  "dependencies": {
+    "expo-local-authentication": "~15.1.0",
+    "expo-secure-store": "~14.2.0"
+  }
+}

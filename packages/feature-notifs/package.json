@@ -1,0 +1,23 @@
+{
+  "name": "@coderooz/feature-notifs",
+  "version": "1.0.3",
+  "description": "Push notifications, local notifications, and channel management for Coderooz Expo projects",
+  "license": "MIT",
+  "author": "Coderooz (https://github.com/coderooz)",
+  "files": ["coderooz.json", "template"],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/coderooz/expo-template-coderooz.git"
+  },
+  "bugs": {
+    "url": "https://github.com/coderooz/expo-template-coderooz/issues"
+  },
+  "homepage": "https://coderooz.github.io/expo-template-coderooz/",
+  "keywords": ["expo", "coderooz", "notifications", "react-native", "push"],
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

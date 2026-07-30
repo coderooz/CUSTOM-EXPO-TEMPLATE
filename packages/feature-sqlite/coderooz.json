@@ -1,0 +1,22 @@
+{
+  "name": "sqlite",
+  "version": "0.1.0",
+  "description": "SQLite database with migration system, typed queries, and seed data support",
+  "hooks": {
+    "env": {
+      "EXPO_PUBLIC_DB_NAME": "app.db"
+    },
+    "config": [
+      {
+        "file": "app.json",
+        "path": "expo.plugins",
+        "value": "expo-sqlite",
+        "type": "plugin"
+      }
+    ],
+    "app-json": ["expo-sqlite"]
+  },
+  "dependencies": {
+    "expo-sqlite": "~16.0.9"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "name": "camera",
+  "version": "0.1.0",
+  "description": "Camera capture, image picker from gallery, and permission handling",
+  "hooks": {
+    "env": {
+      "EXPO_PUBLIC_CAMERA_ENABLED": "true"
+    },
+    "config": [
+      {
+        "file": "app.json",
+        "path": "expo.plugins",
+        "value": "expo-image-picker",
+        "type": "plugin"
+      }
+    ],
+    "app-json": ["expo-image-picker"]
+  },
+  "dependencies": {
+    "expo-camera": "~16.1.0",
+    "expo-image-picker": "~16.1.0",
+    "expo-image-manipulator": "~13.1.0"
+  },
+}
