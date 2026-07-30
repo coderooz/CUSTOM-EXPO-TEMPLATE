@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Documentation
+    url: https://github.com/coderooz/expo-template-coderooz#readme
+    about: Read the project README and docs first.
+  - name: Security issues
+    url: https://github.com/coderooz/expo-template-coderooz/security/advisories/new
+    about: Report security vulnerabilities privately.
