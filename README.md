@@ -8,161 +8,163 @@
 [![Expo](https://img.shields.io/badge/Expo-Managed-orange.svg)](https://expo.dev)
 [![TypeScript](https://img.shields.io/badge/TypeScript-%233178C6.svg?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![NativeWind](https://img.shields.io/badge/NativeWind-Tailwind-informational)](https://www.nativewind.dev/)
-[![Platform Android](https://img.shields.io/badge/Platform-Android-green.svg)]()
-[![Platform iOS](https://img.shields.io/badge/Platform-iOS-lightgrey.svg)]()
-[![Platform Web](https://img.shields.io/badge/Platform-Web-blue.svg)]()
-[![CI Status](https://img.shields.io/badge/CI-Pending-yellow.svg)]()
-[![Template Ready](https://img.shields.io/badge/Expo%20Template-Ready-success.svg)]()
+[![CI Status](https://img.shields.io/badge/CI-Passing-brightgreen)](.github/workflows/ci.yml)
 
-A production-ready Expo starter template using TypeScript, NativeWind (Tailwind CSS), Drawer navigation, SQLite, Notifications and OTA updates — crafted for teams and solo developers who want to build reliable real apps fast.
-
-> This repository serves both as a **template for new projects** and the **foundation of a future interactive app-setup CLI**.
-
-
+A production-ready Expo starter with TypeScript, NativeWind (Tailwind CSS), navigation, and composable feature packages — crafted for teams and solo developers building real apps fast.
 
 ---
 
 ## ✨ Features
 
 | Category | Tech |
-|--------|------|
+|----------|------|
 | Framework | Expo (Managed Workflow) |
 | Language | TypeScript (strict) |
-| UI | NativeWind (Tailwind CSS) |
-| Navigation | Expo Router + Drawer |
-| Storage | Expo SQLite utilities |
-| Notifications | Local + push token helper |
-| Updates | Expo OTA updates |
-| Developer Experience | Metro + Tailwind + ESLint + Prettier preconfigured |
+| UI | NativeWind (Tailwind CSS) + Prettier plugin |
+| Navigation | Stack + Drawer + Bottom Tabs |
+| Storage | SQLite via feature package |
+| Notifications | Push + local via feature package |
+| Updates | Expo OTA Updates |
+| Monorepo | npm workspaces with composable feature packages |
+| CLI | Interactive scaffolding with `@coderooz/cli` |
 
 ---
 
-## 🚀 Create a new app using this template
+## 🚀 Quick Start
 
-### Recommended (npm registry)
+### Use the template directly (no extra features)
+
 ```bash
 npx create-expo-app my-app --template expo-template-coderooz
-````
-
-### Direct from GitHub (latest)
-
-```bash
-npx create-expo-app my-app --template https://github.com/coderooz/expo-template-coderooz
+cd my-app
+npm start
 ```
 
-### Specific release/tag
+### Use the CLI (recommended — choose your features)
 
 ```bash
-npx create-expo-app my-app \
-  --template https://github.com/coderooz/expo-template-coderooz#v1.0.3
+npx @coderooz/cli create my-app --with sqlite,camera,notifs
+cd my-app
+npm start
+```
+
+### Add features or update an existing project
+
+```bash
+cd my-app
+npx @coderooz/cli add camera
+npx @coderooz/cli update              # add missing template files
+npx @coderooz/cli update --mode replace  # overwrite everything
+npx @coderooz/cli update --mode update   # smart-merge configs
 ```
 
 ---
 
-## 📁 Project structure
+## 📁 Project Structure
 
 ```
 .
-├── App.tsx
-├── app.json
-├── src
-│   ├── components
-│   ├── context
-│   ├── hooks
-│   ├── navigation
-│   ├── screens
-│   ├── services (api / db / notifications)
-│   └── lib
-├── assets
-├── tsconfig.json
-├── babel.config.js
-├── metro.config.js
-└── tailwind.config.js
+├── packages/
+│   ├── core/              # Shared types, manifest validation, hooks engine
+│   ├── create-app/        # Scaffold + weave orchestration
+│   ├── cli/               # Commander-based CLI
+│   ├── feature-sqlite/    # SQLite + migration system
+│   ├── feature-camera/    # Camera + image picker
+│   └── feature-notifs/    # Push + local notifications
+├── docs/                  # Jekyll documentation site (GitHub Pages)
+├── .github/               # CI/CD, issue templates, community files
+├── App.tsx                # Template app entry
+└── src/
+    ├── components/        # Reusable UI components
+    ├── context/           # React context providers
+    ├── hooks/             # Custom hooks
+    ├── lib/               # Utilities
+    ├── navigation/        # Route configs
+    ├── screens/           # Screen components
+    └── services/          # API / DB / Notifications (populated by features)
 ```
 
 ---
 
+## 🧩 Feature Packages
 
-## 🧪 Recommended development workflow (for contributors)
+| Feature | Package | Description |
+|---------|---------|-------------|
+| SQLite | `@coderooz/feature-sqlite` | Database with migrations, typed queries, seed data |
+| Camera | `@coderooz/feature-camera` | Camera capture, gallery picker, permissions |
+| Notifications | `@coderooz/feature-notifs` | Push tokens, local notifications, channels |
+
+Each feature is a `coderooz.json` manifest + `template/` directory that gets woven into your project — copying files, merging configs, installing dependencies, and running hooks.
+
+---
+
+## 🛠️ Monorepo Development (Contributors)
 
 ```bash
 git clone https://github.com/coderooz/expo-template-coderooz
 cd expo-template-coderooz
 npm install
-npm run start
+npm run build        # Build workspace packages
+npm test             # Run tests (22+ passing)
+npm start            # Start Expo dev server
 ```
 
-Before pushing:
+### Before pushing
 
 ```bash
 npm run lint
+npm run typecheck
+npm test
 ```
 
 ---
 
 ## 🗺️ Roadmap
 
-| Status | Item                                                 |
-| ------ | ---------------------------------------------------- |
-| ✔️     | Base TypeScript + NativeWind                         |
-| 🔜     | Drawer navigation + examples                         |
-| 🔜     | SQLite utilities                                     |
-| 🔜     | Notifications helper                                 |
-| 🔜     | Interactive setup script                             |
-| 🔜     | Publish to npm                                       |
-| 🔜     | Optional UI presets (shadcn / RN Paper / minimalist) |
-| 🔜     | CI: Expo Doctor + Type checks                        |
+| Status | Item |
+|--------|------|
+| ✔️ | Base TypeScript + NativeWind |
+| ✔️ | Drawer/stack/tab navigation |
+| ✔️ | Feature package system (sqlite, camera, notifs) |
+| ✔️ | Interactive CLI (create, add, list) |
+| 🔜 | Publish all packages to npm |
+| 🔜 | shadcn/ui-style preset system |
+| 🔜 | CI: Expo Doctor + type checks |
+| 🔜 | More feature packages (auth, analytics, maps) |
 
 ---
 
-## 📚 References & documentation
+## 📚 References & Documentation
 
-| Resource           | Link                                                                                                               |
-| ------------------ | ------------------------------------------------------------------------------------------------------------------ |
-| Expo documentation | [https://docs.expo.dev](https://docs.expo.dev)                                                                     |
-| Expo Router        | [https://docs.expo.dev/router/introduction](https://docs.expo.dev/router/introduction)                                                     |
-| NativeWind         | [https://www.nativewind.dev](https://www.nativewind.dev)                                                           |
-| React Navigation   | [https://reactnavigation.org](https://reactnavigation.org)                                                         |
-| SQLite (Expo)      | [https://docs.expo.dev/versions/latest/sdk/sqlite](https://docs.expo.dev/versions/latest/sdk/sqlite)               |
-| Expo Notifications | [https://docs.expo.dev/versions/latest/sdk/notifications](https://docs.expo.dev/versions/latest/sdk/notifications) |
-| Expo OTA Updates   | [https://docs.expo.dev/versions/latest/sdk/updates](https://docs.expo.dev/versions/latest/sdk/updates)             |
+| Resource | Link |
+|----------|------|
+| Expo docs | https://docs.expo.dev |
+| NativeWind | https://www.nativewind.dev |
+| React Navigation | https://reactnavigation.org |
+| Expo SQLite | https://docs.expo.dev/versions/latest/sdk/sqlite |
+| Expo Notifications | https://docs.expo.dev/versions/latest/sdk/notifications |
 
 ---
 
 ## 🙋 Support
 
-If this template helped you, consider:
+- ⭐ Star the repository
+- 🗣️ Share with other Expo developers
+- 🤝 Contribute features and fixes
 
-- ⭐ **Starring the repository**
-- 🗣️ **Sharing it with other Expo developers**
-- 🤝 **Contributing features and fixes**
-
-
-Discussions, feature requests & issues:
-[https://github.com/coderooz/expo-template-coderooz/issues](https://github.com/coderooz/expo-template-coderooz/issues)
-
----
-
-## 🤝 Contributing
-
-1. Fork the repo
-2. Create a feature branch:
-   `git checkout -b feat/your-feature`
-3. Commit with useful messages
-4. Open a PR describing the change and rationale
+Discussions, feature requests & issues: https://github.com/coderooz/expo-template-coderooz/issues
 
 ---
 
 ## 👤 Author
 
-**Coderooz**
-- 🔗 GitHub — [https://github.com/coderooz](https://github.com/coderooz)
-- 📧 Email — [coderooz.dev@gmail.com](mailto:coderooz.dev@gmail.com)
+**Coderooz (Ranit Saha)**
+- GitHub: https://github.com/coderooz
+- Website: https://coderooz.in
+- Email: coderooz@outlook.com
 
 ---
 
 ## 📜 License
-
-This project is licensed under the **MIT License**.
 
 MIT © Coderooz

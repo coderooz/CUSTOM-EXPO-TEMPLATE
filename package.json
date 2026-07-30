@@ -37,7 +37,14 @@
     "metro.config.js",
     "tailwind.config.js",
     "postcss.config.js",
-    "eslint.config.js"
+    "eslint.config.js",
+    "AGENTS.md",
+    "opencode.jsonc",
+    ".prettierrc",
+    ".editorconfig",
+    ".nvmrc",
+    ".env.example",
+    "CHANGELOG.md"
   ],
   "scripts": {
     "start": "expo start",
@@ -45,7 +52,11 @@
     "ios": "expo run:ios",
     "web": "expo start --web",
     "lint": "expo lint",
-    "prepare": "expo install --fix"
+    "typecheck": "tsc --noEmit",
+    "test": "npm run test -w @coderooz/core",
+    "build": "npm run build -w @coderooz/core -w @coderooz/create-app -w @coderooz/cli && node scripts/bundle-assets.js",
+    "build:all": "npm run build && npm run build -w @coderooz/feature-sqlite -w @coderooz/feature-camera -w @coderooz/feature-notifs -w @coderooz/feature-auth -w @coderooz/feature-biometrics -w @coderooz/feature-message -w @coderooz/feature-pages -w @coderooz/feature-icons -w @coderooz/feature-clerk -w @coderooz/feature-design-system -w @coderooz/feature-components -w @coderooz/feature-dynamic-pages",
+    "postinstall": "expo install --fix"
   },
   "dependencies": {
     "@expo/metro-runtime": "~6.1.2",
@@ -57,21 +68,21 @@
     "@react-navigation/native": "^7.1.21",
     "@react-navigation/native-stack": "^7.7.0",
     "@react-navigation/stack": "^7.6.7",
-    "babel-preset-expo": "~54.0.0",
-    "expo": "~54.0.25",
-    "expo-application": "~7.0.7",
-    "expo-auth-session": "~7.0.9",
-    "expo-crypto": "~15.0.7",
-    "expo-dev-client": "~6.0.18",
-    "expo-device": "~8.0.9",
-    "expo-linking": "~8.0.9",
-    "expo-navigation-bar": "~5.0.9",
-    "expo-notifications": "~0.32.13",
-    "expo-splash-screen": "~31.0.11",
-    "expo-sqlite": "~16.0.9",
-    "expo-status-bar": "~3.0.8",
-    "expo-symbols": "~1.0.7",
-    "expo-updates": "~29.0.13",
+    "babel-preset-expo": "~54.0.10",
+    "expo": "~54.0.36",
+    "expo-application": "~7.0.8",
+    "expo-auth-session": "~7.0.11",
+    "expo-crypto": "~15.0.9",
+    "expo-dev-client": "~6.0.21",
+    "expo-device": "~8.0.10",
+    "expo-linking": "~8.0.12",
+    "expo-navigation-bar": "~5.0.10",
+    "expo-notifications": "~0.32.17",
+    "expo-splash-screen": "~31.0.13",
+    "expo-sqlite": "~16.0.10",
+    "expo-status-bar": "~3.0.9",
+    "expo-symbols": "~1.0.8",
+    "expo-updates": "~29.0.19",
     "nativewind": "^4.2.1",
     "prettier-plugin-tailwindcss": "~0.5.14",
     "react": "19.1.0",
@@ -88,9 +99,27 @@
     "@types/react": "~19.1.0",
     "eslint": "^9.0.0",
     "eslint-config-expo": "~10.0.0",
-    "typescript": "~5.9.2"
+    "typescript": "~5.9.2",
+    "vitest": "^4.1.10"
   },
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "workspaces": [
+    "packages/core",
+    "packages/create-app",
+    "packages/cli",
+    "packages/feature-sqlite",
+    "packages/feature-camera",
+    "packages/feature-notifs",
+    "packages/feature-auth",
+    "packages/feature-biometrics",
+    "packages/feature-message",
+    "packages/feature-pages",
+    "packages/feature-icons",
+    "packages/feature-clerk",
+    "packages/feature-design-system",
+    "packages/feature-components",
+    "packages/feature-dynamic-pages"
+  ]
 }

@@ -1,3 +1,10 @@
 - Getting Started
   - [Introduction](/)
-  - [Installation](/guide/installation)
+  - [Getting Started](/getting-started)
+  - [Features](/features)
+- Usage
+  - [UI Components](/ui-components)
+  - [API Integration](/api-integration)
+  - [CLI Commands](/cli-commands)
+- About
+  - [Changelog](/changelog)

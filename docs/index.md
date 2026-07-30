@@ -1,89 +1,57 @@
-# Expo Template Coderooz
+# Coderooz Expo Template
 
-A powerful and modern starter template built on **Expo**, **React Native**, **NativeWind** & **TypeScript**.  
-Designed to **streamline** mobile app development with clean architecture, reusable UI components, navigation,
-state management, and strong developer experience.
+A production-ready **Expo** starter with **TypeScript**, **NativeWind** (Tailwind CSS), and a **monorepo** architecture for composable feature packages.
 
----
-
-## 📦 NPM Package
-
-[![npm version](https://img.shields.io/npm/v/expo-template-coderooz.svg)](https://www.npmjs.com/package/expo-template-coderooz)
-[![License](https://img.shields.io/npm/l/expo-template-coderooz.svg)](https://www.npmjs.com/package/expo-template-coderooz)
-
-🔗 **Package URL:**  
-https://www.npmjs.com/package/expo-template-coderooz
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![Expo](https://img.shields.io/badge/Expo-Managed-orange.svg)](https://expo.dev)
+[![TypeScript](https://img.shields.io/badge/TypeScript-%233178C6.svg?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![NativeWind](https://img.shields.io/badge/NativeWind-Tailwind-informational)](https://www.nativewind.dev/)
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ```sh
 npx create-expo-app MyApp --template expo-template-coderooz
-````
+```
 
-Or without project name (in current folder):
+Or with the Coderooz CLI to add features:
 
 ```sh
-npx create-expo-app . --template expo-template-coderooz
+npx @coderooz/cli create MyApp --with sqlite,camera
 ```
 
 ---
 
-## ⭐ Why This Template?
+## What's Inside
 
-* 🔹 TypeScript first
-* 🔹 NativeWind (TailwindCSS for RN)
-* 🔹 Built-in tab + stack navigation
-* 🔹 Notifications + Local storage utilities
-* 🔹 Minimal + Modern UI components
-* 🔹 Scalable folder structure
-* 🔹 Ready for production
+| Layer | Description |
+|-------|-------------|
+| Expo Template | Base project with TypeScript, NativeWind, navigation, auth, theme |
+| Feature Packages | Composable modules (`sqlite`, `camera`, `notifs`) that you opt into |
+| CLI Tool | Interactive scaffolding with `npx @coderooz/cli` |
 
 ---
 
-## 🧩 Package Highlights
-
-| Feature                  | Included |
-| ------------------------ | :------: |
-| Navigation               |     ✔    |
-| Authentication structure |     ✔    |
-| Async Storage helpers    |     ✔    |
-| Responsive UI Layout     |     ✔    |
-| Expo Dev Client          |     ✔    |
-| OTA Updates Ready        |     ✔    |
-
----
-
-## 📁 Project Structure
+## Project Structure
 
 ```
-src/
- ├─ components/
- ├─ screens/
- ├─ constants/
- ├─ theme/
- ├─ hooks/
- ├─ context/
- └─ lib/
+expo-template-coderooz/
+├── packages/
+│   ├── core/              # Shared types, manifest validation, hooks engine
+│   ├── create-app/        # Scaffold + weave orchestration
+│   ├── cli/               # Commander-based CLI (create, add, list)
+│   ├── feature-sqlite/    # SQLite + migration system
+│   ├── feature-camera/    # Camera + image picker
+│   └── feature-notifs/    # Push + local notifications
+├── docs/                  # Jekyll-based documentation site
+└── .github/               # CI/CD, issue templates, community files
 ```
 
 ---
 
-## 📍 Links
+## Links
 
-* 🔗 GitHub Repo → [https://github.com/coderooz/expo-template-coderooz](https://github.com/coderooz/expo-template-coderooz)
-* 🔗 Issue Tracker → GitHub Issues
-* 💬 Discussions → Coming soon
-
----
-
-## ❤️ Support & Contributions
-
-Pull Requests are welcome!
-If you like this project, please ⭐ the repo!
-
----
-
-> Built with commitment & passion by **Coderooz** 🧠⚡
-> Empowering developers with better tooling!
+- GitHub: [https://github.com/coderooz/expo-template-coderooz](https://github.com/coderooz/expo-template-coderooz)
+- npm: [https://www.npmjs.com/package/expo-template-coderooz](https://www.npmjs.com/package/expo-template-coderooz)
+- Issues: GitHub Issues
