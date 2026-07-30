@@ -1,0 +1,10 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "instructions": ["AGENTS.md"],
+
+  "permission": {
+    "external_directory": {
+      "C:\\Code_Works\\Docs": "allow"
+    }
+  }
+}

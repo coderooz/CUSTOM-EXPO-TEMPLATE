@@ -19,6 +19,9 @@
       "@/navigation/*": ["src/navigation/*"]
     }
   },
+  "exclude": [
+    "packages/create-app/public"
+  ],
   "include": [
     "**/*.ts",
     "**/*.tsx",

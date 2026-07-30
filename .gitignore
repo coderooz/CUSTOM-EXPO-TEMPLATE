@@ -40,5 +40,8 @@ yarn-error.*
 /ios
 /android
 
+# build-time bundled assets
+packages/create-app/public/
+
 #editor
 .vscode/
