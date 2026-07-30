@@ -1,0 +1,41 @@
+{
+  "name": "@coderooz/cli",
+  "version": "1.0.3",
+  "description": "CLI for creating and managing Coderooz Expo projects with composable feature packages",
+  "license": "MIT",
+  "author": "Coderooz (https://github.com/coderooz)",
+  "main": "dist/index.js",
+  "bin": {
+    "coderooz": "dist/index.js"
+  },
+  "files": ["dist"],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/coderooz/expo-template-coderooz.git"
+  },
+  "bugs": {
+    "url": "https://github.com/coderooz/expo-template-coderooz/issues"
+  },
+  "homepage": "https://coderooz.github.io/expo-template-coderooz/",
+  "keywords": ["expo", "coderooz", "cli", "react-native", "scaffold"],
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@coderooz/core": "1.0.3",
+    "@coderooz/create-app": "1.0.3",
+    "commander": "^12.0.0"
+  },
+  "devDependencies": {
+    "typescript": "~5.9.2",
+    "@types/node": "^22.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

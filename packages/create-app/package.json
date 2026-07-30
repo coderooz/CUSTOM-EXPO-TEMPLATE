@@ -1,0 +1,38 @@
+{
+  "name": "@coderooz/create-app",
+  "version": "1.0.3",
+  "description": "Scaffold an Expo app from the Coderooz template with composable feature packages",
+  "license": "MIT",
+  "author": "Coderooz (https://github.com/coderooz)",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": ["dist", "public"],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/coderooz/expo-template-coderooz.git"
+  },
+  "bugs": {
+    "url": "https://github.com/coderooz/expo-template-coderooz/issues"
+  },
+  "homepage": "https://coderooz.github.io/expo-template-coderooz/",
+  "keywords": ["expo", "coderooz", "scaffold", "react-native", "cli"],
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@coderooz/core": "1.0.3",
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "typescript": "~5.9.2",
+    "@types/node": "^22.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
