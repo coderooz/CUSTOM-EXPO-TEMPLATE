@@ -1,0 +1,37 @@
+{
+  "name": "@coderooz/core",
+  "version": "1.0.3",
+  "description": "Core types, manifest validator, config merger, and hooks runner for the Coderooz Expo feature system",
+  "license": "MIT",
+  "author": "Coderooz (https://github.com/coderooz)",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": ["dist"],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/coderooz/expo-template-coderooz.git"
+  },
+  "bugs": {
+    "url": "https://github.com/coderooz/expo-template-coderooz/issues"
+  },
+  "homepage": "https://coderooz.github.io/expo-template-coderooz/",
+  "keywords": ["expo", "coderooz", "react-native", "template", "typescript"],
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "typescript": "~5.9.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
