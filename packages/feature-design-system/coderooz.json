@@ -1,6 +1,6 @@
 {
   "name": "design-system",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Design system foundation: design tokens, color schemes, theme engine (light/dark/high-contrast), and primitives",
   "dependencies": {
     "@react-native-async-storage/async-storage": "2.2.0"

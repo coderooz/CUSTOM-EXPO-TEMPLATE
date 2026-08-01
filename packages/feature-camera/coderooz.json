@@ -1,6 +1,6 @@
 {
   "name": "camera",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Camera capture, image picker from gallery, and permission handling",
   "hooks": {
     "env": {

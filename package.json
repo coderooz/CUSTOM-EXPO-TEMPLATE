@@ -57,7 +57,7 @@
     "typecheck": "tsc --noEmit",
     "test": "npm run test -w @coderooz/core",
     "build": "npm run build -w @coderooz/core -w @coderooz/create-app -w @coderooz/cli && node scripts/bundle-assets.js",
-    "build:all": "npm run build && npm run build -w @coderooz/feature-sqlite -w @coderooz/feature-camera -w @coderooz/feature-notifs -w @coderooz/feature-auth -w @coderooz/feature-biometrics -w @coderooz/feature-message -w @coderooz/feature-pages -w @coderooz/feature-icons -w @coderooz/feature-clerk -w @coderooz/feature-design-system -w @coderooz/feature-components -w @coderooz/feature-dynamic-pages",
+    "build:all": "npm run build && node scripts/validate-features.js",
     "postinstall": "expo install --fix"
   },
   "dependencies": {

@@ -1,6 +1,6 @@
 {
   "name": "biometrics",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Biometric authentication with fingerprint, Face ID, and secure credential storage",
   "hooks": {
     "env": {

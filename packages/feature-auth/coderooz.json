@@ -1,6 +1,6 @@
 {
   "name": "auth",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Authentication service with token management, session persistence, and provider-agnostic design",
   "hooks": {
     "env": {

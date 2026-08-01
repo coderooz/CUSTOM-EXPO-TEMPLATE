@@ -1,6 +1,6 @@
 {
   "name": "notifs",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Push and local notifications with channel management, scheduling, and permission handling",
   "hooks": {
     "env": {
