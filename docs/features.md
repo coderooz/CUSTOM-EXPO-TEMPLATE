@@ -106,7 +106,7 @@ Each feature package includes a `coderooz.json` manifest that defines:
 ```json
 {
   "name": "feature-name",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "requires": ["design-system"],
   "provides": ["ui", "states"],
   "hooks": {

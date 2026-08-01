@@ -140,7 +140,8 @@ npm run build:all
 | ✔️ | Interactive CLI (create, add, list, update) |
 | ✔️ | All packages published to npm |
 | ✔️ | Example showcase app (`examples/showcase`) |
-| 🔜 | CI: Expo Doctor + type checks on every PR |
+| ✔️ | CI: lint, typecheck, test, build on every PR |
+| 🔜 | CI: Expo Doctor checks |
 | 🔜 | shadcn/ui-style preset system |
 
 ---

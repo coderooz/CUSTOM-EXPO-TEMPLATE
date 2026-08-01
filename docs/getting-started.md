@@ -76,5 +76,5 @@ Every scaffolded project includes an AI-agent governance layer:
 - `GOVERNANCE.md` — enforceable rules (reports, naming, validation, hygiene, security)
 - `opencode.jsonc` — OpenCode config that loads these as instructions
 
-These files ship as part of the template. See [AI Governance](/ai-governance) for details,
-and the [Showcase](/showcase) for a full-featured example app.
+These files ship as part of the template. See [AI Governance](ai-governance) for details,
+and the [Showcase](showcase) for a full-featured example app.

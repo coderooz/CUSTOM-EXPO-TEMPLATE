@@ -195,7 +195,8 @@ npx @coderooz/cli list                     # list available features
 
 ### Showcase example
 
-`examples/showcase/` is a runnable app demonstrating all feature packages. It is
+`examples/showcase/` is a runnable app demonstrating the showcase feature set (design
+system, components, sqlite, dynamic-pages, notifs, icons, pages, auth). It is
 **generated**, not hand-edited:
 
 ```bash

@@ -1,15 +1,24 @@
 # Showcase Example
 
-`examples/showcase/` is a **runnable Expo app** that demonstrates every feature package
-working together in one project. It is the definitive reference for how the 12 features
-compose.
+`examples/showcase/` is a **runnable Expo app** that demonstrates a curated set of
+feature packages working together in one project. It is the definitive reference for
+how features compose. The showcase weaves 8 of the 12 features:
+
+- **Design System** — tokens, color schemes, light/dark/high-contrast themes
+- **UI Components** — buttons, inputs, cards, sheets, dialogs, layouts
+- **SQLite** — typed database layer with migrations and seed support
+- **Dynamic Pages** — config-driven pages resolved at runtime from a manifest
+- **Notifications** — local notifications setup
+- **Icons** — typed icon registry
+- **Pages** — About, Licenses, Policies screens
+- **Auth** — provider-agnostic auth service with secure token storage
 
 ## What It Shows
 
 The showcase is generated from the base template plus an overlay
-(`scripts/showcase-overlay/`) that configures all feature packages — SQLite with
-migrations, camera, notifications, auth, biometrics, messages, pages, icons, Clerk,
-the design system, components, and dynamic pages.
+(`scripts/showcase-overlay/`) that configures the feature packages above. The remaining
+feature packages (camera, biometrics, messages, clerk) are not included in the showcase
+but can be added to any project via `npx @coderooz/cli add camera`.
 
 ## Important
 

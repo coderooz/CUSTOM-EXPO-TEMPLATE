@@ -1,14 +1,14 @@
 - Getting Started
-  - [Introduction](/)
-  - [Getting Started](/getting-started)
-  - [Features](/features)
+  - [Introduction](index.md)
+  - [Getting Started](getting-started.md)
+  - [Features](features.md)
 - Usage
-  - [UI Components](/ui-components)
-  - [API Integration](/api-integration)
-  - [CLI Commands](/cli-commands)
+  - [UI Components](ui-components.md)
+  - [API Integration](api-integration.md)
+  - [CLI Commands](cli-commands.md)
 - AI & Examples
-  - [AI Governance](/ai-governance)
-  - [Showcase](/showcase)
+  - [AI Governance](ai-governance.md)
+  - [Showcase](showcase.md)
 - About
-  - [Branching Strategy](/branching-strategy)
-  - [Changelog](/changelog)
+  - [Branching Strategy](branching-strategy.md)
+  - [Changelog](changelog.md)

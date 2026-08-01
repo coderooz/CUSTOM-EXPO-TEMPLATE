@@ -31,7 +31,7 @@ npx @coderooz/cli create my-app --with sqlite,camera
 | Feature Packages | 12 composable modules (`sqlite`, `camera`, `notifs`, `dynamic-pages`, ...) |
 | CLI Tool | Interactive scaffolding with `npx @coderooz/cli` (create / add / list / update) |
 | AI Governance | `AGENTS.md` + `GOVERNANCE.md` ship in every scaffolded project |
-| Showcase | `examples/showcase/` — a runnable app demonstrating all 12 features |
+| Showcase | `examples/showcase/` — a runnable app demonstrating 8 composable feature packages |
 
 ---
 
@@ -61,6 +61,6 @@ expo-template-coderooz/
 
 Every scaffolded project ships with an AI governance layer — `LLM.txt`, `AGENTS.md`, and
 `GOVERNANCE.md` give AI coding agents full context on how to use the template. Read
-[AI Governance](/ai-governance) for the enforceable rules, see the
-[Showcase](/showcase) for a full-featured example app, or the
-[Branching Strategy](/branching-strategy) for how the repository is organized.
+[AI Governance](ai-governance) for the enforceable rules, see the
+[Showcase](showcase) for a full-featured example app, or the
+[Branching Strategy](branching-strategy) for how the repository is organized.

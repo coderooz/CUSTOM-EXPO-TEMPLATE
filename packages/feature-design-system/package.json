@@ -15,5 +15,9 @@
   "homepage": "https://coderooz.github.io/expo-template-coderooz/",
   "keywords": ["expo", "coderooz", "design-system", "theme", "tokens", "react-native"],
   "engines": { "node": ">=18.0.0" },
-  "publishConfig": { "access": "public" }
+  "publishConfig": { "access": "public" },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  }
 }

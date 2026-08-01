@@ -21,7 +21,7 @@ every project scaffolded from this template gets the same governance layer.
 `main` is the only permanent source branch; feature source lives only in
 `packages/feature-*` on `main`. Generated outputs (example apps, docs site) live on
 artifact branches or are produced by CI. Release maintenance uses `v1.x`-style lines.
-See [Branching Strategy](/branching-strategy) for the full design.
+See [Branching Strategy](branching-strategy) for the full design.
 
 ## Key Rules for AI Agents
 
@@ -55,7 +55,7 @@ node scripts/build-example.js # regenerate examples/showcase/ (if showcase chang
 
 ## Showcase Example
 
-`examples/showcase/` is a runnable app demonstrating every feature package. It is
-regenerated from the template + overlay sources — see [Showcase](/showcase).
+`examples/showcase/` is a runnable app demonstrating the showcase feature set. It is
+regenerated from the template + overlay sources — see [Showcase](showcase).
 
 See `GOVERNANCE.md` in the repository root for the complete rulebook.

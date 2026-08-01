@@ -55,7 +55,7 @@
     "web": "expo start --web",
     "lint": "expo lint",
     "typecheck": "tsc --noEmit",
-    "test": "npm run test -w @coderooz/core",
+    "test": "npm run test -w @coderooz/core -w @coderooz/feature-design-system -w @coderooz/feature-dynamic-pages",
     "build": "npm run build -w @coderooz/core -w @coderooz/create-app -w @coderooz/cli && node scripts/bundle-assets.js",
     "build:all": "npm run build && node scripts/validate-features.js",
     "postinstall": "expo install --fix"
