@@ -1,6 +1,6 @@
 {
   "name": "@coderooz/feature-components",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Reusable component library for Coderooz Expo projects: buttons, inputs, interactions, states, and layouts",
   "license": "MIT",
   "author": "Coderooz (https://github.com/coderooz)",

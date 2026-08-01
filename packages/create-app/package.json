@@ -1,6 +1,6 @@
 {
   "name": "@coderooz/create-app",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Scaffold an Expo app from the Coderooz template with composable feature packages",
   "license": "MIT",
   "author": "Coderooz (https://github.com/coderooz)",

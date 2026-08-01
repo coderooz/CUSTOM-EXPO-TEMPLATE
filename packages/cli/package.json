@@ -1,6 +1,6 @@
 {
   "name": "@coderooz/cli",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "CLI for creating and managing Coderooz Expo projects with composable feature packages",
   "license": "MIT",
   "author": "Coderooz (https://github.com/coderooz)",

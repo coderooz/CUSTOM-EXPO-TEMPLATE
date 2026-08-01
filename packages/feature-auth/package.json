@@ -1,6 +1,6 @@
 {
   "name": "@coderooz/feature-auth",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Authentication service for Coderooz Expo projects",
   "license": "MIT",
   "author": "Coderooz (https://github.com/coderooz)",

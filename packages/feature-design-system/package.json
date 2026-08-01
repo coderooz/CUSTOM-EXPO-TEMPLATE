@@ -1,6 +1,6 @@
 {
   "name": "@coderooz/feature-design-system",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Design system foundation: tokens, colors, typography, theme engine, and primitives for Coderooz Expo projects",
   "license": "MIT",
   "author": "Coderooz (https://github.com/coderooz)",

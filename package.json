@@ -1,6 +1,6 @@
 {
   "name": "expo-template-coderooz",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A production-ready Expo starter template with TypeScript, NativeWind, Drawer navigation, SQLite, Notifications and OTA updates.",
   "author": "Coderooz <coderooz.dev@gmail.com> (https://github.com/coderooz)",
   "license": "MIT",
@@ -39,6 +39,8 @@
     "postcss.config.js",
     "eslint.config.js",
     "AGENTS.md",
+    "GOVERNANCE.md",
+    "LLM.txt",
     "opencode.jsonc",
     ".prettierrc",
     ".editorconfig",

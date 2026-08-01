@@ -1,6 +1,6 @@
 {
   "name": "@coderooz/core",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Core types, manifest validator, config merger, and hooks runner for the Coderooz Expo feature system",
   "license": "MIT",
   "author": "Coderooz (https://github.com/coderooz)",
