@@ -14,7 +14,7 @@ export default function DynamicPagesDemoScreen() {
 
   return (
     <Screen>
-      <VStack gap={4}>
+      <VStack gap={4} style={{ flex: 1 }}>
         <Card p={4}>
           <VStack gap={1}>
             <Text style={{ color: colors.foreground, fontSize: 16, fontWeight: '600' }}>
