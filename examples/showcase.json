@@ -1,0 +1,23 @@
+{
+  "name": "showcase",
+  "appName": "coderooz-showcase",
+  "appTitle": "Coderooz Showcase",
+  "slug": "coderooz-showcase",
+  "features": [
+    "design-system",
+    "components",
+    "sqlite",
+    "dynamic-pages",
+    "notifs",
+    "icons",
+    "pages",
+    "auth"
+  ],
+  "overlay": "scripts/showcase-overlay",
+  "dependencies": [
+    "zod",
+    "@gorhom/bottom-sheet",
+    "expo-secure-store",
+    "expo-web-browser"
+  ]
+}

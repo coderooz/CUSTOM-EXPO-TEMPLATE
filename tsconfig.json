@@ -16,11 +16,21 @@
       "@/screens/*" : ["src/screens/*"],
       "@/context/*" : ["src/context/*"],
       "@/hooks/*" : ["src/hooks/*"],
-      "@/navigation/*": ["src/navigation/*"]
+      "@/navigation/*": ["src/navigation/*"],
+      "@/theme/*"     : ["src/theme/*"],
+      "@/services/*"  : ["src/services/*"],
+      "@/primitives/*": ["src/primitives/*"],
+      "@/templates/*" : ["src/templates/*"],
+      "@/data/*"      : ["src/data/*"]
     }
   },
   "exclude": [
-    "packages/create-app/public"
+    "packages/create-app/public",
+    "packages/*/dist",
+    "packages/feature-*/template",
+    "packages/feature-*/tests",
+    "examples",
+    "scripts/showcase-overlay"
   ],
   "include": [
     "**/*.ts",

@@ -1,0 +1,66 @@
+name: Sync Example Branches
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "packages/**"
+      - "scripts/**"
+      - "App.tsx"
+      - "src/**"
+      - "examples/*.json"
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    name: Regenerate example apps
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build template + features
+        run: npm run build
+
+      - name: Regenerate examples from configs
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for cfg in examples/*.json; do
+            name=$(node -p "require('./' + process.argv[1]).name" "$cfg")
+            branch="examples/${name}"
+            node scripts/build-example.js --config "$cfg"
+            if git rev-parse --verify "origin/${branch}" > /dev/null 2>&1; then
+              git checkout "${branch}"
+            else
+              git checkout --orphan "${branch}"
+            fi
+            # Remove stale monorepo files, keep only the generated app contents.
+            git rm -rf --quiet . 2>/dev/null || true
+            shopt -s dotglob
+            cp -r "${GITHUB_WORKSPACE}/examples/${name}"/. .
+            shopt -u dotglob
+            rm -f .gitignore
+            git add -A
+            git -c user.name="github-actions[bot]" \
+               -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
+               commit -m "chore(examples/${name}): regenerate from main" || true
+            git push origin "${branch}" --force-with-lease
+            git checkout main
+          done

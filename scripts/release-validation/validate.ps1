@@ -25,6 +25,12 @@ npm run build
 if ($LASTEXITCODE -ne 0) { throw "Build failed" }
 Write-Host "Build: OK" -ForegroundColor Green
 
+# Step 1b: Validate + build all feature packages
+Write-Host "--- Step 1b: Feature packages (build:all) ---" -ForegroundColor Yellow
+npm run build:all
+if ($LASTEXITCODE -ne 0) { throw "build:all failed" }
+Write-Host "build:all: OK" -ForegroundColor Green
+
 # Step 2: Lint
 Write-Host "--- Step 2: Lint ---" -ForegroundColor Yellow
 npm run lint
@@ -41,9 +47,7 @@ Write-Host "Typecheck: OK" -ForegroundColor Green
 Write-Host "--- Step 4: Tests ---" -ForegroundColor Yellow
 npm test
 if ($LASTEXITCODE -ne 0) { throw "Tests failed" }
-Write-Host "Tests: OK" -ForegroundColor Green
-
-# Step 5: npm pack dry-run for all publishable packages
+Write-Host "Tests: OK" -ForegroundColor Green# Step 5: npm pack dry-run for all publishable packages
 Write-Host "--- Step 5: npm pack dry-run ---" -ForegroundColor Yellow
 
 Write-Host "  Packing @coderooz/core..." -NoNewline
@@ -60,6 +64,16 @@ Write-Host "  Packing @coderooz/cli..." -NoNewline
 npm pack --dry-run --ignore-scripts -w packages/cli 2>&1 | Out-Null
 if ($LASTEXITCODE -ne 0) { throw "@coderooz/cli pack failed" }
 Write-Host " OK" -ForegroundColor Green
+
+# Step 5b: npm pack dry-run for all feature packages
+Write-Host "--- Step 5b: Feature package pack dry-run ---" -ForegroundColor Yellow
+$featureDirs = Get-ChildItem "packages" -Directory | Where-Object { $_.Name -like "feature-*" }
+foreach ($dir in $featureDirs) {
+  Write-Host "  Packing $($dir.Name)..." -NoNewline
+  npm pack --dry-run --ignore-scripts -w "packages/$($dir.Name)" 2>&1 | Out-Null
+  if ($LASTEXITCODE -ne 0) { throw "$($dir.Name) pack failed" }
+  Write-Host " OK" -ForegroundColor Green
+}
 
 # Step 6: Verify CLI entry point
 Write-Host "--- Step 6: CLI entry point ---" -ForegroundColor Yellow
@@ -78,11 +92,26 @@ if ($hasTests) {
   Write-Host "core/dist/__tests__: excluded" -ForegroundColor Green
 }
 
-# Step 8: Verify template files list
+# Step 8: Template files list
 Write-Host "--- Step 8: Template manifest ---" -ForegroundColor Yellow
 $pkg = Get-Content "package.json" | ConvertFrom-Json
 Write-Host "Template files: $($pkg.files.Count) entries" -ForegroundColor Green
 $pkg.files | ForEach-Object { Write-Host "  - $_" }
+
+# Step 9: Dependency health (non-fatal advisory)
+Write-Host "--- Step 9: npm audit summary ---" -ForegroundColor Yellow
+$audit = npm audit --json 2>$null | ConvertFrom-Json
+if ($null -ne $audit -and $null -ne $audit.metadata.vulnerabilities) {
+  $v = $audit.metadata.vulnerabilities
+  Write-Host "  vulnerabilities: info=$($v.info) low=$($v.low) moderate=$($v.moderate) high=$($v.high) critical=$($v.critical)"
+  if ($v.high -gt 0 -or $v.critical -gt 0) {
+    Write-Host "  WARNING: $($v.high + $v.critical) high/critical vulnerabilities found. Review before release." -ForegroundColor Yellow
+  } else {
+    Write-Host "  No high/critical vulnerabilities." -ForegroundColor Green
+  }
+} else {
+  Write-Host "  npm audit returned no summary (may be offline)." -ForegroundColor Yellow
+}
 
 Write-Host ""
 Write-Host "=== Validation Complete ===" -ForegroundColor Cyan
