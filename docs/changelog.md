@@ -1,5 +1,21 @@
 # Changelog
 
+## 1.0.4
+
+### Added
+- GOVERNANCE.md — enforceable AI-agent rulebook (reports, naming, validation, hygiene, security)
+- AGENTS.md expanded to cover all 12 feature packages, showcase, docs, and governance
+- LLM.txt — single-context AI entry point for building projects with the template
+- AI Governance + Showcase + Branching Strategy documentation pages
+- GOVERNANCE.md + LLM.txt ship in the published template (`package.json` `files`)
+- Branching strategy implemented: `examples/*.json` example configs, generalized
+  `scripts/build-example.js` (`--config <path>`), `.github/workflows/examples-sync.yml`,
+  release/publish triggers on `main` + `vN.x`
+
+### Changed
+- opencode.jsonc now loads AGENTS.md + GOVERNANCE.md + LLM.txt as instructions
+- docs navigation updated (AI Governance, Showcase, Branching Strategy)
+
 ## 1.0.3
 
 ### Added

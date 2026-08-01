@@ -6,5 +6,9 @@
   - [UI Components](/ui-components)
   - [API Integration](/api-integration)
   - [CLI Commands](/cli-commands)
+- AI & Examples
+  - [AI Governance](/ai-governance)
+  - [Showcase](/showcase)
 - About
+  - [Branching Strategy](/branching-strategy)
   - [Changelog](/changelog)

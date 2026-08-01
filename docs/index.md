@@ -12,13 +12,13 @@ A production-ready **Expo** starter with **TypeScript**, **NativeWind** (Tailwin
 ## Quick Start
 
 ```sh
-npx create-expo-app MyApp --template expo-template-coderooz
+npx create-expo-app my-app --template expo-template-coderooz
 ```
 
 Or with the Coderooz CLI to add features:
 
 ```sh
-npx @coderooz/cli create MyApp --with sqlite,camera
+npx @coderooz/cli create my-app --with sqlite,camera
 ```
 
 ---
@@ -27,9 +27,11 @@ npx @coderooz/cli create MyApp --with sqlite,camera
 
 | Layer | Description |
 |-------|-------------|
-| Expo Template | Base project with TypeScript, NativeWind, navigation, auth, theme |
-| Feature Packages | Composable modules (`sqlite`, `camera`, `notifs`) that you opt into |
-| CLI Tool | Interactive scaffolding with `npx @coderooz/cli` |
+| Expo Template | Base project with TypeScript, NativeWind, navigation, theme |
+| Feature Packages | 12 composable modules (`sqlite`, `camera`, `notifs`, `dynamic-pages`, ...) |
+| CLI Tool | Interactive scaffolding with `npx @coderooz/cli` (create / add / list / update) |
+| AI Governance | `AGENTS.md` + `GOVERNANCE.md` ship in every scaffolded project |
+| Showcase | `examples/showcase/` — a runnable app demonstrating all 12 features |
 
 ---
 
@@ -38,13 +40,12 @@ npx @coderooz/cli create MyApp --with sqlite,camera
 ```
 expo-template-coderooz/
 ├── packages/
-│   ├── core/              # Shared types, manifest validation, hooks engine
+│   ├── core/              # Types, manifest validation, config merge, hooks engine
 │   ├── create-app/        # Scaffold + weave orchestration
-│   ├── cli/               # Commander-based CLI (create, add, list)
-│   ├── feature-sqlite/    # SQLite + migration system
-│   ├── feature-camera/    # Camera + image picker
-│   └── feature-notifs/    # Push + local notifications
+│   ├── cli/               # Commander-based CLI (create, add, list, update)
+│   └── feature-*/         # 12 composable feature packages
 ├── docs/                  # Jekyll-based documentation site
+├── scripts/               # Build + release validation tooling
 └── .github/               # CI/CD, issue templates, community files
 ```
 
@@ -55,3 +56,11 @@ expo-template-coderooz/
 - GitHub: [https://github.com/coderooz/expo-template-coderooz](https://github.com/coderooz/expo-template-coderooz)
 - npm: [https://www.npmjs.com/package/expo-template-coderooz](https://www.npmjs.com/package/expo-template-coderooz)
 - Issues: GitHub Issues
+
+## For AI Agents
+
+Every scaffolded project ships with an AI governance layer — `LLM.txt`, `AGENTS.md`, and
+`GOVERNANCE.md` give AI coding agents full context on how to use the template. Read
+[AI Governance](/ai-governance) for the enforceable rules, see the
+[Showcase](/showcase) for a full-featured example app, or the
+[Branching Strategy](/branching-strategy) for how the repository is organized.

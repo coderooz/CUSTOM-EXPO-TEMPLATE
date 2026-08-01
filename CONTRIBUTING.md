@@ -24,17 +24,23 @@ git clone https://github.com/coderooz/expo-template-coderooz
 cd expo-template-coderooz
 npm install
 npm run start
-````
+```
 
 ### Before submitting a PR
 
+Run the full validation suite:
+
 ```bash
-npm run lint
-npx tsc --noEmit
-expo doctor
+npm run build       # build core, create-app, cli + bundle assets
+npm run build:all   # validate all 12 feature packages
+npm test            # unit tests (core, design-system, dynamic-pages)
+npm run lint        # ESLint via expo
+npm run typecheck   # TypeScript --noEmit
+node scripts/validate-features.js   # structural validation of feature packages
 ```
 
-All checks must pass before review.
+All checks must pass before review. If you modify a feature package, run
+`npm run build:all` to confirm it still validates.
 
 ---
 
@@ -77,9 +83,11 @@ Allowed types: `feat`, `fix`, `docs`, `refactor`, `chore`, `test`, `style`.
 
 Before submitting a PR:
 
-* [ ] Lints and TypeScript build pass
+* [ ] Lint, typecheck, and unit tests pass
+* [ ] `npm run build:all` passes (feature packages validate)
 * [ ] The template still **starts cleanly on iOS, Android & Web**
-* [ ] No generated / build artifacts are committed (`.expo`, `android`, `ios`, `node_modules`, etc.)
+* [ ] No generated / build artifacts are committed (`.expo`, `android`, `ios`, `node_modules`, `dist`, etc.)
+* [ ] Feature changes update the matching `packages/feature-*/README.md` and `coderooz.json` version if needed
 * [ ] Screenshots are placed in `.github/assets/` (if added)
 * [ ] Branch is up-to-date with `main`
 
@@ -102,7 +110,7 @@ By contributing, you agree to follow the
 [`CODE_OF_CONDUCT.md`](./CODE_OF_CONDUCT.md).
 
 Any unacceptable behavior can be reported privately to:
-📧 **[coderooz.dev@gmail.com](mailto:coderooz.dev@gmail.com)**
+📧 **[coderooz@outlook.com](mailto:coderooz@outlook.com)**
 
 ---
 

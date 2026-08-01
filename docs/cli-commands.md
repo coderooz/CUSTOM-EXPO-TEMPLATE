@@ -39,17 +39,23 @@ coderooz create my-app --with sqlite,camera,notifs
 
 ### `add`
 
-Add a feature to an existing project.
+Add one or more features to an existing project (comma-separated).
 
 ```sh
-coderooz add <feature>
+coderooz add <features> [options]
 ```
 
-Example:
+| Option | Description |
+|--------|-------------|
+| `-p, --project-dir <path>` | Project directory (defaults to current directory) |
+
+Examples:
 
 ```sh
 cd my-app
 coderooz add camera
+coderooz add camera,notifs,sqlite
+coderooz add dynamic-pages    # also installs design-system, components, sqlite
 ```
 
 ### `list`
@@ -92,9 +98,18 @@ coderooz update -p /path/to/project -m update      # specify project
 
 | Feature | Package | Description |
 |---------|---------|-------------|
-| `sqlite` | `@coderooz/feature-sqlite` | SQLite database with migrations |
+| `auth` | `@coderooz/feature-auth` | Authentication with token management |
+| `biometrics` | `@coderooz/feature-biometrics` | Fingerprint / Face ID auth |
 | `camera` | `@coderooz/feature-camera` | Camera capture & image picker |
+| `clerk` | `@coderooz/feature-clerk` | Clerk sign-in/up, OAuth, profile |
+| `components` | `@coderooz/feature-components` | Reusable UI components (requires design-system) |
+| `design-system` | `@coderooz/feature-design-system` | Tokens, themes, primitives |
+| `dynamic-pages` | `@coderooz/feature-dynamic-pages` | Config-driven pages (requires design-system, components, sqlite) |
+| `icons` | `@coderooz/feature-icons` | Typed icon system |
+| `message` | `@coderooz/feature-message` | SMS, OTP, phone validation |
 | `notifs` | `@coderooz/feature-notifs` | Push & local notifications |
+| `pages` | `@coderooz/feature-pages` | About, Licenses, Policies screens |
+| `sqlite` | `@coderooz/feature-sqlite` | SQLite database with migrations |
 
 ## Template Commands
 

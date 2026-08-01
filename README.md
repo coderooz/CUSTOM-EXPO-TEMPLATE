@@ -8,9 +8,8 @@
 [![Expo](https://img.shields.io/badge/Expo-Managed-orange.svg)](https://expo.dev)
 [![TypeScript](https://img.shields.io/badge/TypeScript-%233178C6.svg?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![NativeWind](https://img.shields.io/badge/NativeWind-Tailwind-informational)](https://www.nativewind.dev/)
-[![CI Status](https://img.shields.io/badge/CI-Passing-brightgreen)](.github/workflows/ci.yml)
 
-A production-ready Expo starter with TypeScript, NativeWind (Tailwind CSS), navigation, and composable feature packages — crafted for teams and solo developers building real apps fast.
+A production-ready Expo starter with TypeScript, NativeWind (Tailwind CSS), navigation, and a composable feature-package system — crafted for teams and solo developers building real apps fast.
 
 ---
 
@@ -22,11 +21,11 @@ A production-ready Expo starter with TypeScript, NativeWind (Tailwind CSS), navi
 | Language | TypeScript (strict) |
 | UI | NativeWind (Tailwind CSS) + Prettier plugin |
 | Navigation | Stack + Drawer + Bottom Tabs |
-| Storage | SQLite via feature package |
-| Notifications | Push + local via feature package |
+| Storage | SQLite via `@coderooz/feature-sqlite` |
+| Notifications | Push + local via `@coderooz/feature-notifs` |
 | Updates | Expo OTA Updates |
 | Monorepo | npm workspaces with composable feature packages |
-| CLI | Interactive scaffolding with `@coderooz/cli` |
+| CLI | Scaffolding with `@coderooz/cli` (create / add / list / update) |
 
 ---
 
@@ -52,10 +51,11 @@ npm start
 
 ```bash
 cd my-app
-npx @coderooz/cli add camera
-npx @coderooz/cli update              # add missing template files
+npx @coderooz/cli add camera,notifs      # comma-separated works too
+npx @coderooz/cli update                 # add missing template files
 npx @coderooz/cli update --mode replace  # overwrite everything
 npx @coderooz/cli update --mode update   # smart-merge configs
+npx @coderooz/cli list                   # list available features
 ```
 
 ---
@@ -65,13 +65,12 @@ npx @coderooz/cli update --mode update   # smart-merge configs
 ```
 .
 ├── packages/
-│   ├── core/              # Shared types, manifest validation, hooks engine
+│   ├── core/              # Types, manifest validation, config merge, hooks engine
 │   ├── create-app/        # Scaffold + weave orchestration
 │   ├── cli/               # Commander-based CLI
-│   ├── feature-sqlite/    # SQLite + migration system
-│   ├── feature-camera/    # Camera + image picker
-│   └── feature-notifs/    # Push + local notifications
+│   └── feature-*/         # 12 composable feature packages
 ├── docs/                  # Jekyll documentation site (GitHub Pages)
+├── scripts/               # Build + release validation tooling
 ├── .github/               # CI/CD, issue templates, community files
 ├── App.tsx                # Template app entry
 └── src/
@@ -86,15 +85,24 @@ npx @coderooz/cli update --mode update   # smart-merge configs
 
 ---
 
-## 🧩 Feature Packages
+## 🧩 Feature Packages (12)
 
-| Feature | Package | Description |
-|---------|---------|-------------|
-| SQLite | `@coderooz/feature-sqlite` | Database with migrations, typed queries, seed data |
-| Camera | `@coderooz/feature-camera` | Camera capture, gallery picker, permissions |
-| Notifications | `@coderooz/feature-notifs` | Push tokens, local notifications, channels |
+| Feature | Package | Requires | Provides |
+|---------|---------|----------|----------|
+| Auth | `@coderooz/feature-auth` | — | token mgmt, sessions |
+| Biometrics | `@coderooz/feature-biometrics` | — | fingerprint / Face ID |
+| Camera | `@coderooz/feature-camera` | — | capture, picker, permissions |
+| Clerk | `@coderooz/feature-clerk` | — | sign-in/up, OAuth, profile |
+| Components | `@coderooz/feature-components` | design-system | UI, states, layouts |
+| Design System | `@coderooz/feature-design-system` | — | theme, primitives |
+| Dynamic Pages | `@coderooz/feature-dynamic-pages` | design-system, components, sqlite | page-engine, screens |
+| Icons | `@coderooz/feature-icons` | — | typed icons |
+| Messages | `@coderooz/feature-message` | — | SMS, OTP, phone validation |
+| Notifications | `@coderooz/feature-notifs` | — | push, local, channels |
+| Pages | `@coderooz/feature-pages` | — | About, Licenses, Policies |
+| SQLite | `@coderooz/feature-sqlite` | — | migrations, typed queries |
 
-Each feature is a `coderooz.json` manifest + `template/` directory that gets woven into your project — copying files, merging configs, installing dependencies, and running hooks.
+Each feature is a `coderooz.json` manifest + `template/` directory that gets woven into your project — copying files, merging configs, installing dependencies, and running hooks. Dependencies declared in `requires` are pulled in automatically: selecting `dynamic-pages` also installs `design-system`, `components`, and `sqlite`.
 
 ---
 
@@ -104,9 +112,11 @@ Each feature is a `coderooz.json` manifest + `template/` directory that gets wov
 git clone https://github.com/coderooz/expo-template-coderooz
 cd expo-template-coderooz
 npm install
-npm run build        # Build workspace packages
-npm test             # Run tests (22+ passing)
-npm start            # Start Expo dev server
+npm run build          # Build core, create-app, cli
+npm run build:all      # Validate all 12 feature packages
+npm test               # Unit tests (core, design-system, dynamic-pages)
+npm run lint           # ESLint via expo
+npm run typecheck      # TypeScript --noEmit
 ```
 
 ### Before pushing
@@ -115,6 +125,7 @@ npm start            # Start Expo dev server
 npm run lint
 npm run typecheck
 npm test
+npm run build:all
 ```
 
 ---
@@ -125,12 +136,12 @@ npm test
 |--------|------|
 | ✔️ | Base TypeScript + NativeWind |
 | ✔️ | Drawer/stack/tab navigation |
-| ✔️ | Feature package system (sqlite, camera, notifs) |
-| ✔️ | Interactive CLI (create, add, list) |
-| 🔜 | Publish all packages to npm |
+| ✔️ | 12 composable feature packages |
+| ✔️ | Interactive CLI (create, add, list, update) |
+| ✔️ | All packages published to npm |
+| ✔️ | Example showcase app (`examples/showcase`) |
+| 🔜 | CI: Expo Doctor + type checks on every PR |
 | 🔜 | shadcn/ui-style preset system |
-| 🔜 | CI: Expo Doctor + type checks |
-| 🔜 | More feature packages (auth, analytics, maps) |
 
 ---
 
@@ -138,6 +149,7 @@ npm test
 
 | Resource | Link |
 |----------|------|
+| Project docs | https://coderooz.github.io/expo-template-coderooz/ |
 | Expo docs | https://docs.expo.dev |
 | NativeWind | https://www.nativewind.dev |
 | React Navigation | https://reactnavigation.org |

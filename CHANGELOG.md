@@ -1,5 +1,33 @@
 # Changelog
 
+## [1.0.4]
+
+### Added
+- **AI governance layer** for the template + generated projects:
+  - `GOVERNANCE.md` — enforceable rulebook for AI agents (reports, naming, validation, hygiene, security)
+  - `LLM.txt` — single-context AI entry point for building projects with the template
+  - Expanded `AGENTS.md` — full context for all 12 feature packages, showcase, docs, and governance
+  - `GOVERNANCE.md` + `LLM.txt` added to root `package.json` `files` so they ship in the published template
+- **Branching strategy** design + implementation — `docs/branching-strategy.md`:
+  - `main` as the only permanent source branch (feature source in `packages/feature-*`)
+  - `v1.x` release maintenance lines for patches/hotfixes
+  - `examples/<name>` artifact branches for generated example apps (CI-synced)
+  - No long-lived feature branches; short-lived `feat/*`/`fix/*`/`chore/*`/`docs/*`
+  - AI context stays on `main` (a separate AI branch is not beneficial)
+  - `scripts/build-example.js` generalized to read `examples/*.json` configs
+    (`--config <path>`, default `examples/showcase.json`)
+  - `.github/workflows/examples-sync.yml` regenerates example branches on `main` push
+  - `release.yml` / `publish.yml` triggers narrowed to `main` + `vN.x`
+- docs: `ai-governance.md`, `showcase.md`, and `branching-strategy.md` pages
+- docs: nav + sidebar entries for AI Governance, Showcase, Branching Strategy
+- docs: index and getting-started reference the AI governance layer
+
+### Changed
+- `opencode.jsonc` (root + template) now loads `AGENTS.md` + `GOVERNANCE.md` + `LLM.txt` as instructions
+- `GOVERNANCE.md` gained a branching-rules section + AI context maintenance rule
+- `AGENTS.md` now leads with `LLM.txt` as the single-context entry point
+- docs/changelog.md synced with root CHANGELOG.md
+
 ## [1.0.3]
 
 ### Added

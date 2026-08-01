@@ -13,4 +13,7 @@ nav:
   - UI Components: ui-components.md
   - API: api-integration.md
   - CLI: cli-commands.md
+  - AI Governance: ai-governance.md
+  - Showcase: showcase.md
+  - Branching Strategy: branching-strategy.md
   - Changelog: changelog.md
