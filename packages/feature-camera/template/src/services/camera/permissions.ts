@@ -7,7 +7,7 @@ export interface PermissionStatus {
 }
 
 export async function requestAllPermissions(): Promise<PermissionStatus> {
-  const camera = await Camera.requestCameraPermissionsAsync();
+  const camera = await Camera.Camera.requestCameraPermissionsAsync();
   const mediaLibrary = await ImagePicker.requestMediaLibraryPermissionsAsync();
 
   return {
@@ -17,7 +17,7 @@ export async function requestAllPermissions(): Promise<PermissionStatus> {
 }
 
 export async function getPermissionStatus(): Promise<PermissionStatus> {
-  const camera = await Camera.getCameraPermissionsAsync();
+  const camera = await Camera.Camera.getCameraPermissionsAsync();
   const mediaLibrary = await ImagePicker.getMediaLibraryPermissionsAsync();
 
   return {

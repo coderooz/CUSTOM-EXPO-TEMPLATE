@@ -12,6 +12,12 @@ export interface CaptureOptions {
   base64?: boolean;
 }
 
+function toImagePickerMediaTypes(mediaTypes?: MediaType): ImagePicker.MediaType[] {
+  if (mediaTypes === 'mixed') return ['images', 'videos'];
+  if (mediaTypes === 'videos') return ['videos'];
+  return ['images'];
+}
+
 export async function pickFromGallery(options: CaptureOptions = {}): Promise<ImagePicker.ImagePickerSuccessResult | null> {
   const permission = await ImagePicker.requestMediaLibraryPermissionsAsync();
   if (!permission.granted) {
@@ -19,7 +25,7 @@ export async function pickFromGallery(options: CaptureOptions = {}): Promise<Ima
   }
 
   const result = await ImagePicker.launchImageLibraryAsync({
-    mediaTypes: options.mediaTypes ?? 'images',
+    mediaTypes: toImagePickerMediaTypes(options.mediaTypes),
     allowsEditing: options.allowsEditing ?? false,
     quality: options.quality ?? 0.8,
     base64: options.base64 ?? false,
@@ -36,7 +42,7 @@ export async function takePhoto(options: CaptureOptions = {}): Promise<ImagePick
   }
 
   const result = await ImagePicker.launchCameraAsync({
-    mediaTypes: options.mediaTypes ?? 'images',
+    mediaTypes: toImagePickerMediaTypes(options.mediaTypes),
     allowsEditing: options.allowsEditing ?? false,
     quality: options.quality ?? 0.8,
     base64: options.base64 ?? false,
