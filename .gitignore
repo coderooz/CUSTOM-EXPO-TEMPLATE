@@ -43,5 +43,8 @@ yarn-error.*
 # build-time bundled assets
 packages/create-app/public/
 
-#editor
+# editor
 .vscode/
+
+# workspace (temporary AI-agent files — never commit)
+.workspace/

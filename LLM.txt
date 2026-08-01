@@ -1,0 +1,201 @@
+# Coderooz Expo Template — AI Context
+
+This file gives an **AI coding agent** everything it needs to build a real project with
+`expo-template-coderooz`: what the template provides, how the pieces fit together, how to
+use each feature, and the conventions to follow. Read it before writing code.
+
+**Related files (read in this order):**
+1. `AGENTS.md` — deep context: monorepo layout, weave pipeline, workflows
+2. `GOVERNANCE.md` — enforceable rules for AI agents (validation, hygiene, security)
+3. `README.md` — human-facing overview
+4. `docs/` — full reference (features, UI components, API integration, CLI commands)
+
+---
+
+## What This Is
+
+A production-ready **Expo (Managed) starter** written in **TypeScript (strict)** with
+**NativeWind (Tailwind CSS)** and **React Navigation**. It is a template package plus a
+system of **12 composable feature packages** that can be woven into a project via the
+Coderooz CLI. A project scaffolded from this template is a **standalone Expo app** —
+not a monorepo.
+
+---
+
+## Quick Start (scaffold a project)
+
+```bash
+# Template only (no features)
+npx create-expo-app my-app --template expo-template-coderooz
+
+# With features (recommended)
+npx @coderooz/cli create my-app --with sqlite,camera,notifs
+
+# Add features to an existing project
+npx @coderooz/cli add camera,notifs
+
+# See available features
+npx @coderooz/cli list
+
+# Sync template files into an existing project
+npx @coderooz/cli update               # add-missing (default)
+npx @coderooz/cli update --mode replace  # overwrite everything
+npx @coderooz/cli update --mode update   # smart-merge JSON configs
+```
+
+Selecting a feature pulls in its `requires` automatically. `dynamic-pages` also installs
+`design-system`, `components`, and `sqlite`.
+
+---
+
+## Feature Packages (12)
+
+| Feature | Package | Requires | Provides |
+|---------|---------|----------|----------|
+| Auth | `@coderooz/feature-auth` | — | token mgmt, sessions, secure storage (`expo-secure-store`) |
+| Biometrics | `@coderooz/feature-biometrics` | — | fingerprint / Face ID |
+| Camera | `@coderooz/feature-camera` | — | capture, gallery picker, permissions |
+| Clerk | `@coderooz/feature-clerk` | — | sign-in/up, OAuth, profile |
+| Components | `@coderooz/feature-components` | design-system | UI, states, layouts |
+| Design System | `@coderooz/feature-design-system` | — | theme, primitives, tokens |
+| Dynamic Pages | `@coderooz/feature-dynamic-pages` | design-system, components, sqlite | page-engine, screens |
+| Icons | `@coderooz/feature-icons` | — | typed icons |
+| Messages | `@coderooz/feature-message` | — | SMS, OTP, phone validation |
+| Notifications | `@coderooz/feature-notifs` | — | push, local, channels |
+| Pages | `@coderooz/feature-pages` | — | About, Licenses, Policies |
+| SQLite | `@coderooz/feature-sqlite` | — | migrations, typed queries |
+
+Each feature is a `coderooz.json` manifest (declares `requires`, `provides`, `hooks`,
+`dependencies`) plus a `template/` directory. Weaving a feature copies its files into the
+project, merges `package.json` deps, appends `app.json` plugins, merges `.env.example`
+vars, and runs hooks.
+
+---
+
+## Generated Project Structure
+
+After scaffolding, the project looks like this:
+
+```
+src/
+├── components/     # Reusable UI components (base + feature-woven)
+├── context/        # React context providers (Alert, App, Theme, Toast, User, PageEngine)
+├── hooks/          # Custom hooks
+├── lib/            # Utilities (utils, storage, fetchData, connectDb)
+├── navigation/     # Route configs (App, Auth, OnBoarding, Splash)
+├── screens/        # Screen components
+├── services/       # API / DB / Notifications / page-engine / icons / auth
+├── theme/          # Design tokens, colors, color schemes
+├── templates/      # Built-in dynamic-page templates (feature-dynamic-pages)
+├── primitives/     # Primitive components (feature-design-system)
+└── data/           # Static manifests (e.g. showcase-manifest)
+```
+
+### Path aliases
+
+`@/` resolves to `src/` in `tsconfig.json`:
+
+| Alias | Maps to |
+|-------|---------|
+| `@/components/*` | `src/components/*` |
+| `@/lib/*` | `src/lib/*` |
+| `@/screens/*` | `src/screens/*` |
+| `@/context/*` | `src/context/*` |
+| `@/hooks/*` | `src/hooks/*` |
+| `@/navigation/*` | `src/navigation/*` |
+| `@/theme/*` | `src/theme/*` |
+| `@/services/*` | `src/services/*` |
+| `@/primitives/*` | `src/primitives/*` |
+| `@/templates/*` | `src/templates/*` |
+| `@/data/*` | `src/data/*` |
+
+---
+
+## Building With the Template
+
+### Base structure (always present)
+
+- **Navigation:** `src/navigation/` exports `AppNavigation`, `AuthNavigation`,
+  `OnBoardingNavigation`, `SplashNavigation`. Wire screens into the relevant group.
+- **Context providers:** `AlertProvider`, `AppProvider`, `ThemeProvider`,
+  `ToastProvider`, `UserProvider` — wrap the app in `App.tsx`. Feature hooks add more
+  (e.g. `PageEngineProvider` from dynamic-pages).
+- **Hooks:** `useStorage`, `UserHook`, plus feature hooks like `useTheme`.
+- **Lib:** `utils`, `storage` (AsyncStorage-backed), `fetchData`, `connectDb`.
+
+### Adding a screen
+
+1. Create `src/screens/<Name>Screen.tsx`.
+2. Register it in the appropriate `src/navigation/*.tsx` route config.
+3. If a feature provides navigation hooks, follow the feature's manifest contract.
+
+### Using a feature
+
+Feature-woven code lives under `src/services/` and `src/components/`. Examples:
+
+- **SQLite:** `src/services/db/` — `executeQuery`, `executeRun`, migrations, typed queries.
+- **Notifications:** `src/services/notifications/` — push token registration, local
+  scheduling, channels.
+- **Dynamic pages:** `src/services/page-engine/` — loader, resolver, registry, cache,
+  version-tracker; render config-driven pages via the page engine.
+- **Auth:** `src/services/auth/` — token management + session persistence via
+  `expo-secure-store`.
+- **Icons:** `src/services/icons/` — typed icon registry; use `IconButton` components.
+- **Design system:** `src/theme/tokens.ts` (spacing, typography, radius, shadows),
+  `src/theme/color-schemes.ts` (light/dark/high-contrast), primitives in `src/primitives/`.
+
+Check the `coderooz.json` manifest of the feature you use for its exact hooks (env vars,
+app.json plugins, navigation groups, services, post-install).
+
+### Environment variables
+
+`.env.example` ships template placeholders. Real values go in a gitignored `.env`.
+Expo public vars are prefixed `EXPO_PUBLIC_` (e.g. `EXPO_PUBLIC_AUTH_TOKEN_KEY`).
+
+---
+
+## Conventions (MUST follow)
+
+- TypeScript strict mode; no implicit `any`
+- `interface` for object shapes; `type` for unions/utilities
+- `const` over `let`, never `var`
+- `async/await` over raw promises
+- Optional chaining (`?.`) and nullish coalescing (`??`)
+- Avoid `any` — use `unknown` and narrow with type guards
+- Style with `StyleSheet.create()`, not inline objects
+- Never hardcode dimensions — use `useWindowDimensions()`
+- Conventional commits: `type(scope): message` (feat, fix, refactor, chore, docs, test, style, perf)
+- No comments in code unless explicitly asked
+
+---
+
+## Commands (in a scaffolded project)
+
+| Command | What it does |
+|---------|--------------|
+| `npm start` | Expo dev server |
+| `npm run lint` | ESLint via expo |
+| `npm run typecheck` | TypeScript `--noEmit` |
+| `npx @coderooz/cli add <feature>` | Add a feature |
+| `npx @coderooz/cli update` | Sync missing template files |
+
+---
+
+## Documentation
+
+- Docs site: https://coderooz.github.io/expo-template-coderooz/
+  - Getting Started, Features, UI Components, API Integration, CLI Commands, AI Governance
+- Expo docs: https://docs.expo.dev
+- NativeWind: https://www.nativewind.dev
+- React Navigation: https://reactnavigation.org
+- Expo SQLite: https://docs.expo.dev/versions/latest/sdk/sqlite
+- Expo Notifications: https://docs.expo.dev/versions/latest/sdk/notifications
+
+---
+
+## Security Notes
+
+- Never log, expose, or commit secrets, API keys, tokens, or passwords
+- `.env.example` ships placeholders only — real `.env` files are gitignored
+- Auth uses `expo-secure-store` for token persistence — never plaintext storage
+- Validate and sanitize all user inputs
