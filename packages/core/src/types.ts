@@ -70,6 +70,8 @@ export interface FeatureManifest {
   devDependencies?: Record<string, string>;
   peerDependencies?: Record<string, string>;
   conflicts?: string[];
+  requires?: string[];
+  provides?: string[];
 }
 
 export interface WeaveResult {

@@ -80,5 +80,6 @@ export class ConfigLoader {
 
   invalidateCache(): void {
     this.cachedManifest = null;
+    this.manifestVersion = 0;
   }
 }

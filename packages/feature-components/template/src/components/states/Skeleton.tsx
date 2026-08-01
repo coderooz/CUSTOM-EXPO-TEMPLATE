@@ -1,9 +1,9 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, type DimensionValue } from 'react-native';
 import { useTheme } from '@/hooks/useTheme';
 
 interface SkeletonProps {
-  width?: number | string;
+  width?: DimensionValue;
   height?: number;
   rounded?: 'sm' | 'md' | 'lg' | 'full';
   lines?: number;

@@ -1,6 +1,6 @@
 {
   "name": "sqlite",
-  "version": "0.1.0",
+  "version": "1.0.3",
   "description": "SQLite database with migration system, typed queries, and seed data support",
   "hooks": {
     "env": {

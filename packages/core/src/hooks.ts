@@ -2,6 +2,7 @@ import { FeatureManifest, WeaveResult } from './types';
 import { copyTemplateFiles } from './files';
 import { applyConfigUpdates } from './merge';
 import { installFeatureDependencies } from './deps';
+import { statSync } from 'fs';
 import { join } from 'path';
 
 export interface WeaveContext {
@@ -20,7 +21,7 @@ export function weaveFeature(
     hooksExecuted: [],
   };
 
-  const featureDir = join(context.featuresDir, manifest.name);
+  const featureDir = resolveFeatureDir(context.featuresDir, manifest.name);
 
   const depsResult = installFeatureDependencies(
     context.projectDir,
@@ -58,6 +59,24 @@ export function weaveFeature(
   }
 
   return result;
+}
+
+function resolveFeatureDir(featuresDir: string, name: string): string {
+  const bare = join(featuresDir, name);
+  if (isDirectory(bare)) return bare;
+
+  const prefixed = join(featuresDir, `feature-${name}`);
+  if (isDirectory(prefixed)) return prefixed;
+
+  return bare;
+}
+
+function isDirectory(dir: string): boolean {
+  try {
+    return statSync(dir).isDirectory();
+  } catch {
+    return false;
+  }
 }
 
 function appendEnvFile(projectDir: string, envVars: Record<string, string>): void {

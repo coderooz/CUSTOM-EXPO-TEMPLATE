@@ -28,3 +28,9 @@ function CameraScreen() {
   // ...
 }
 ```
+
+## Install
+
+```sh
+npx @coderooz/cli add camera
+```

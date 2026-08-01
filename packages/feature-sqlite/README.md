@@ -19,3 +19,9 @@ await initializeDatabase({ name: 'app.db' });
 const users = await executeQuery<User>('SELECT * FROM users WHERE active = ?', true);
 await executeRun('UPDATE users SET name = ? WHERE id = ?', 'Alice', 1);
 ```
+
+## Install
+
+```sh
+npx @coderooz/cli add sqlite
+```

@@ -11,7 +11,7 @@ const program = new Command();
 program
   .name('coderooz')
   .description('CLI for creating and managing Coderooz Expo projects')
-  .version('1.0.3');
+  .version('1.0.4');
 
 program
   .command('create <app-name>')
@@ -34,11 +34,15 @@ program
   });
 
 program
-  .command('add <feature>')
-  .description('Add a feature to an existing project')
-  .action(async (feature) => {
+  .command('add <features>')
+  .description('Add one or more features to an existing project (comma-separated)')
+  .option(
+    '-p, --project-dir <path>',
+    'Project directory to update (default: current directory)',
+  )
+  .action(async (features, opts) => {
     try {
-      await addCommand({ feature });
+      await addCommand({ features, projectDir: opts.projectDir });
     } catch (err) {
       console.error('\n  Error:', (err as Error).message, '\n');
       process.exit(1);

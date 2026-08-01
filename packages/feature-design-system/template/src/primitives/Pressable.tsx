@@ -14,17 +14,16 @@ export function PressablePrimitive({
 }: PressablePrimitiveProps) {
   const { colors, isDark } = useTheme();
 
-  const getStateStyle = (pressed: boolean, hovered: boolean): ViewStyle => {
+  const getStateStyle = (pressed: boolean): ViewStyle => {
     if (disabled) return { opacity: 0.4 };
     if (pressed) return { opacity: 0.7 };
-    if (hovered) return { opacity: 0.85 };
     return {};
   };
 
   return (
     <RNPressable
-      style={({ pressed, hovered }) => [
-        getStateStyle(pressed, hovered ?? false),
+      style={({ pressed }) => [
+        getStateStyle(pressed),
         style as ViewStyle,
       ]}
       disabled={disabled}

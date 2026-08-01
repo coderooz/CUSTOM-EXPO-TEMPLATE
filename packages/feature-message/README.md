@@ -21,3 +21,9 @@ await sendSms(['+1234567890'], 'Your OTP is 123456');
 const otp = await readOtpFromClipboard();
 console.log(otp); // '123456'
 ```
+
+## Install
+
+```sh
+npx @coderooz/cli add message
+```

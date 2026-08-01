@@ -1,6 +1,6 @@
 {
   "name": "components",
-  "version": "0.1.0",
+  "version": "1.0.3",
   "description": "Reusable UI components: buttons, inputs, dialogs, sheets, snackbars, states, and screen layouts",
   "dependencies": {
     "@gorhom/bottom-sheet": "^5.1.0",

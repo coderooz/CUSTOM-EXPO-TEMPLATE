@@ -41,3 +41,9 @@ function Profile() {
   return <Text>Hello {user?.fullName}</Text>;
 }
 ```
+
+## Install
+
+```sh
+npx @coderooz/cli add clerk
+```

@@ -12,9 +12,9 @@ function HeroBanner(section: SectionConfig) {
   const data = section.data ?? {};
   return (
     <View style={{ padding: 24, backgroundColor: colors.primary, alignItems: 'center', gap: 12 }}>
-      {data.title && <Text style={{ color: colors.primaryForeground, fontSize: 32, fontWeight: '700', textAlign: 'center' }}>{data.title as string}</Text>}
-      {data.subtitle && <Text style={{ color: colors.primaryForeground, fontSize: 16, opacity: 0.9, textAlign: 'center', maxWidth: 320 }}>{data.subtitle as string}</Text>}
-      {data.cta && (
+      {typeof data.title === 'string' && <Text style={{ color: colors.primaryForeground, fontSize: 32, fontWeight: '700', textAlign: 'center' }}>{data.title}</Text>}
+      {typeof data.subtitle === 'string' && <Text style={{ color: colors.primaryForeground, fontSize: 16, opacity: 0.9, textAlign: 'center', maxWidth: 320 }}>{data.subtitle}</Text>}
+      {typeof data.cta === 'object' && data.cta !== null && (
         <Button
           title={(data.cta as { label: string }).label ?? 'Get Started'}
           onPress={() => {}}
@@ -54,9 +54,9 @@ function CTASection(section: SectionConfig) {
       <Text style={{ color: colors.foreground, fontSize: 24, fontWeight: '700', textAlign: 'center' }}>
         {data.title as string ?? 'Ready to Get Started?'}
       </Text>
-      {data.description && (
+      {typeof data.description === 'string' && (
         <Text style={{ color: colors.mutedForeground, fontSize: 14, textAlign: 'center', maxWidth: 300 }}>
-          {data.description as string}
+          {data.description}
         </Text>
       )}
       <Button title={(data.cta as { label: string })?.label ?? 'Get Started'} onPress={() => {}} size="lg" />

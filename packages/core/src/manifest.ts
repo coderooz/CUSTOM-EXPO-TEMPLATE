@@ -65,6 +65,8 @@ const FeatureManifestSchema = z.object({
   devDependencies: z.record(z.string()).optional(),
   peerDependencies: z.record(z.string()).optional(),
   conflicts: z.array(z.string()).optional(),
+  requires: z.array(z.string()).optional(),
+  provides: z.array(z.string()).optional(),
 });
 
 export function validateManifest(data: unknown): FeatureManifest {

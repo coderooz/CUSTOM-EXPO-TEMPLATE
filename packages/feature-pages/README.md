@@ -17,3 +17,9 @@ import { AboutScreen } from '@/screens/pages/AboutScreen';
 
 <Stack.Screen name="About" component={AboutScreen} />
 ```
+
+## Install
+
+```sh
+npx @coderooz/cli add pages
+```

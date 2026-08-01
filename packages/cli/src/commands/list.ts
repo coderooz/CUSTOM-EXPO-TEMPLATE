@@ -1,6 +1,6 @@
 import { listAvailableFeatures, resolveFeaturesDir } from '@coderooz/create-app';
+import { loadManifest } from '@coderooz/core';
 import { join } from 'path';
-import { readFileSync } from 'fs';
 
 export async function listCommand(): Promise<void> {
   const featuresDir = resolveFeaturesDir();
@@ -15,17 +15,21 @@ export async function listCommand(): Promise<void> {
 
   for (const feature of features) {
     try {
-      const manifest = JSON.parse(
-        readFileSync(
-          join(featuresDir, feature, 'coderooz.json'),
-          'utf-8',
-        ),
-      );
-      console.log(`  ${feature}`);
-      console.log(`    ${manifest.description ?? ''}`);
+      const manifest = loadManifest(join(featuresDir, feature));
+      const name = feature.replace(/^feature-/, '');
+      console.log(`  ${name}`);
+      if (manifest.description) console.log(`    ${manifest.description}`);
+
+      const details: string[] = [];
+      if (manifest.provides?.length) details.push(`provides: ${manifest.provides.join(', ')}`);
+      if (manifest.requires?.length) details.push(`requires: ${manifest.requires.join(', ')}`);
+      if (details.length) console.log(`    ${details.join('  |  ')}`);
       console.log();
     } catch {
       console.log(`  ${feature}\n`);
     }
   }
+
+  console.log('  Usage: coderooz create my-app --with sqlite,camera');
+  console.log('         coderooz add notifs\n');
 }

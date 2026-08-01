@@ -1,7 +1,7 @@
 import React from 'react';
 import type { ComponentDef, ActionDef, TemplateDef, SectionConfig } from './types';
 
-class Registry {
+export class Registry {
   private components = new Map<string, ComponentDef>();
   private actions = new Map<string, ActionDef>();
   private templates = new Map<string, TemplateDef>();

@@ -24,7 +24,7 @@ const variantColors: Record<SnackbarVariant, { bg: string; text: string }> = {
 export function Snackbar({ visible, message, variant = 'default', action, onDismiss, duration = 3000, style }: SnackbarProps) {
   const opacity = useRef(new Animated.Value(0)).current;
   const translateY = useRef(new Animated.Value(50)).current;
-  const timerRef = useRef<ReturnType<typeof setTimeout>>();
+  const timerRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
 
   useEffect(() => {
     if (visible) {

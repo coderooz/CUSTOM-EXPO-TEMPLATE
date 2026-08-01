@@ -1,6 +1,6 @@
 {
   "name": "clerk",
-  "version": "0.1.0",
+  "version": "1.0.3",
   "description": "Clerk authentication with sign-in, sign-up, OAuth, user profile, and session management",
   "hooks": {
     "env": {

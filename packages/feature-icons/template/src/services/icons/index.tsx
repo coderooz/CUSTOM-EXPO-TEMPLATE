@@ -10,13 +10,15 @@ import Octicons from '@expo/vector-icons/Octicons';
 import type { IconProps, IconButtonProps, IconFamily } from './types';
 import { getCustomIcon } from './registry';
 
-const FAMILY_MAP: Record<IconFamily, React.ComponentType<{ name: string; size?: number; color?: string }> | null> = {
-  Ionicons,
-  MaterialIcons,
-  Feather,
-  MaterialCommunityIcons,
-  FontAwesome5,
-  Octicons,
+type VectorIconComponent = React.ComponentType<{ name: string; size?: number; color?: string }>;
+
+const FAMILY_MAP: Record<IconFamily, VectorIconComponent | null> = {
+  Ionicons: Ionicons as unknown as VectorIconComponent,
+  MaterialIcons: MaterialIcons as unknown as VectorIconComponent,
+  Feather: Feather as unknown as VectorIconComponent,
+  MaterialCommunityIcons: MaterialCommunityIcons as unknown as VectorIconComponent,
+  FontAwesome5: FontAwesome5 as unknown as VectorIconComponent,
+  Octicons: Octicons as unknown as VectorIconComponent,
   Custom: null,
 };
 

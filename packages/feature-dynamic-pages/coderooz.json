@@ -1,6 +1,6 @@
 {
   "name": "dynamic-pages",
-  "version": "0.1.0",
+  "version": "1.0.3",
   "description": "Dynamic page builder: config-driven runtime page resolution with template/component/action registries, SQLite caching, and hot-reload",
   "dependencies": {
     "zod": "^3.24.0",

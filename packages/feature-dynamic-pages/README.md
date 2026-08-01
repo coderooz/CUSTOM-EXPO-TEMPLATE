@@ -48,3 +48,17 @@ Built-in templates: marketing, dashboard, settings, form, blank. Custom template
 // Use DynamicScreen as a catch-all route
 <Stack.Screen name="[slug]" component={DynamicScreen} />
 ```
+
+## Install
+
+```sh
+npx @coderooz/cli add dynamic-pages
+```
+
+Installs `design-system`, `components`, and `sqlite` automatically via `requires`.
+
+## Testing
+
+```sh
+npm run test -w @coderooz/feature-dynamic-pages
+```

@@ -1,6 +1,6 @@
 {
   "name": "icons",
-  "version": "0.1.0",
+  "version": "1.0.3",
   "description": "Typed icon system with vector icons, SVG registry, and icon button components",
   "hooks": {
     "env": {

@@ -1,6 +1,6 @@
 {
   "name": "message",
-  "version": "0.1.0",
+  "version": "1.0.3",
   "description": "SMS sending, OTP auto-read from clipboard, phone validation, and messaging utilities",
   "hooks": {
     "env": {

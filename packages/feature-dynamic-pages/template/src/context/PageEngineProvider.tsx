@@ -2,9 +2,9 @@ import React, { createContext, useContext, useState, useEffect, useMemo, useCall
 import { ConfigLoader } from '@/services/page-engine/loader';
 import { PageResolver } from '@/services/page-engine/resolver';
 import { registry } from '@/services/page-engine/registry';
-import { createMemoryCache } from '@/services/page-engine/cache';
+import { createMemoryCache, type CacheAdapter } from '@/services/page-engine/cache';
 import { VersionTracker } from '@/services/page-engine/version-tracker';
-import type { CacheAdapter, PageConfig, PageEngineConfig, StalePageInfo } from '@/services/page-engine/types';
+import type { PageConfig, PageEngineConfig, StalePageInfo } from '@/services/page-engine/types';
 
 interface PageEngineContextValue {
   loader: ConfigLoader;
@@ -31,6 +31,7 @@ export function PageEngineProvider({
   configUrl,
   pollIntervalMs = 0,
   cacheAdapter,
+  fetchFn,
   onError,
 }: React.PropsWithChildren<PageEngineConfig & { cacheAdapter?: CacheAdapter }>) {
   const [pages, setPages] = useState<PageConfig[]>([]);
@@ -38,7 +39,7 @@ export function PageEngineProvider({
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
   const [stalePages, setStalePages] = useState<StalePageInfo[]>([]);
-  const intervalRef = useRef<ReturnType<typeof setInterval>>();
+  const intervalRef = useRef<ReturnType<typeof setInterval> | undefined>(undefined);
   const versionTrackerRef = useRef<VersionTracker | null>(null);
 
   const cache = useMemo(() => cacheAdapter ?? createMemoryCache(), [cacheAdapter]);
@@ -51,10 +52,11 @@ export function PageEngineProvider({
 
   const loader = useMemo(() => new ConfigLoader({
     configUrl,
+    fetchFn,
     cacheGet: cache.get.bind(cache),
     cacheSet: cache.set.bind(cache),
     onError: (err) => { setError(err); onError?.(err); },
-  }), [configUrl, cache, onError]);
+  }), [configUrl, fetchFn, cache, onError]);
 
   const resolver = useMemo(() => new PageResolver(loader), [loader]);
 

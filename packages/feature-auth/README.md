@@ -25,3 +25,9 @@ const isAuthenticated = await authService.isAuthenticated();
 // Logout
 await authService.logout();
 ```
+
+## Install
+
+```sh
+npx @coderooz/cli add auth
+```

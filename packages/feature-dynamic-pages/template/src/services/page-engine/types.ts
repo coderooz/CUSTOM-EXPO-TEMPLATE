@@ -57,5 +57,6 @@ export interface StalePageInfo {
 export interface PageEngineConfig {
   configUrl: string;
   pollIntervalMs?: number;
+  fetchFn?: (url: string) => Promise<Response>;
   onError?: (error: Error) => void;
 }

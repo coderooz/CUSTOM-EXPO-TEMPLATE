@@ -82,7 +82,7 @@ export function ThemeProvider({
 
   const scheme = getColorScheme(schemeId);
   const resolvedMode: ThemeMode = contrast === 'high' ? 'high-contrast' : mode;
-  const colors = scheme.colors[resolvedMode];
+  const colors = scheme.colors[resolvedMode === 'high-contrast' ? 'highContrast' : resolvedMode];
   const isDark = resolvedMode === 'dark' || resolvedMode === 'high-contrast';
 
   const value = useMemo(() => ({

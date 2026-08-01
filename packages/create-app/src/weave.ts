@@ -44,14 +44,15 @@ export function weaveFeatures(options: WeaveOptions): void {
     resolvedNames.push(resolved);
   }
 
-  const conflictError = checkConflicts(resolvedNames, manifests);
+  const expanded = expandRequires(resolvedNames, manifests, allPackages, featuresDir);
+  const conflictError = checkConflicts(expanded, manifests);
   if (conflictError) {
     throw new Error(`Feature conflict: ${conflictError}`);
   }
 
   const context = { projectDir, featuresDir };
 
-  for (const resolved of resolvedNames) {
+  for (const resolved of expanded) {
     const manifest = manifests.get(resolved)!;
     const result = weaveFeature(manifest, context);
 
@@ -61,6 +62,60 @@ export function weaveFeatures(options: WeaveOptions): void {
       console.log(`    hooks: ${result.hooksExecuted.join(', ')}`);
     }
   }
+}
+
+function expandRequires(
+  selected: string[],
+  manifests: Map<string, FeatureManifest>,
+  allPackages: string[],
+  featuresDir: string,
+): string[] {
+  const ordered: string[] = [];
+  const seen = new Set<string>();
+  const visiting = new Set<string>();
+
+  function loadIfMissing(pkg: string): FeatureManifest {
+    if (manifests.has(pkg)) return manifests.get(pkg)!;
+    const manifest = loadManifest(join(featuresDir, pkg));
+    manifests.set(pkg, manifest);
+    return manifest;
+  }
+
+  function resolveByName(name: string): string | null {
+    if (allPackages.includes(name)) return name;
+    if (allPackages.includes(`feature-${name}`)) return `feature-${name}`;
+    for (const pkg of allPackages) {
+      const manifest = manifests.get(pkg);
+      if (manifest?.name === name) return pkg;
+    }
+    return null;
+  }
+
+  function visit(pkg: string): void {
+    if (seen.has(pkg)) return;
+    if (visiting.has(pkg)) {
+      throw new Error(`Circular feature dependency detected at "${pkg}"`);
+    }
+    visiting.add(pkg);
+
+    const manifest = loadIfMissing(pkg);
+    for (const requirement of manifest.requires ?? []) {
+      const resolved = resolveByName(requirement);
+      if (!resolved) {
+        throw new Error(
+          `Feature "${pkg}" requires "${requirement}" but no matching feature package was found`,
+        );
+      }
+      visit(resolved);
+    }
+
+    visiting.delete(pkg);
+    seen.add(pkg);
+    ordered.push(pkg);
+  }
+
+  for (const pkg of selected) visit(pkg);
+  return ordered;
 }
 
 export function listAvailableFeatures(featuresDir: string): string[] {

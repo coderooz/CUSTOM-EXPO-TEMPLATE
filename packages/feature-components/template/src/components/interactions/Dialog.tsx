@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/Button';
 interface DialogAction {
   label: string;
   onPress: () => void;
-  variant?: 'primary' | 'secondary' | 'destructive';
+  variant?: 'primary' | 'secondary' | 'danger';
 }
 
 interface DialogProps {

@@ -1,6 +1,6 @@
 {
   "name": "camera",
-  "version": "0.1.0",
+  "version": "1.0.3",
   "description": "Camera capture, image picker from gallery, and permission handling",
   "hooks": {
     "env": {
@@ -20,5 +20,5 @@
     "expo-camera": "~16.1.0",
     "expo-image-picker": "~16.1.0",
     "expo-image-manipulator": "~13.1.0"
-  },
+  }
 }

@@ -24,3 +24,22 @@ Reusable component library for Coderooz Expo projects.
 
 ### Layouts
 - Screen, ScrollableScreen, CenteredScreen, SplitLayout, Section, Card, Divider, Stack (HStack/VStack), Grid
+
+## Usage
+
+```tsx
+import { Button, Input } from '@/components';
+
+<Button variant="primary" size="lg" loading={isSaving} onPress={save}>
+  Save
+</Button>
+<Input label="Email" placeholder="you@example.com" />
+```
+
+## Install
+
+```sh
+npx @coderooz/cli add components
+```
+
+Installs `design-system` automatically via `requires`.

@@ -30,3 +30,9 @@ const subscription = addNotificationResponseListener((response) => {
   console.log('User tapped notification:', response.notification.request.content.data);
 });
 ```
+
+## Install
+
+```sh
+npx @coderooz/cli add notifs
+```

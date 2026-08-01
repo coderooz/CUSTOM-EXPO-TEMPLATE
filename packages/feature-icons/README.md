@@ -24,3 +24,9 @@ import { Icon, IconButton } from '@/services/icons';
 // Custom SVG icon
 <Icon name="logo" family="Custom" size={32} />
 ```
+
+## Install
+
+```sh
+npx @coderooz/cli add icons
+```

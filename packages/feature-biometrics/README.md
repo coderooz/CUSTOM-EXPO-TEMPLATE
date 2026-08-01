@@ -29,3 +29,9 @@ const result = await authenticate({
   fallbackLabel: 'Use passcode',
 });
 ```
+
+## Install
+
+```sh
+npx @coderooz/cli add biometrics
+```
