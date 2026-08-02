@@ -26,6 +26,12 @@
 - `opencode.jsonc` (root + template) now loads `AGENTS.md` + `GOVERNANCE.md` + `LLM.txt` as instructions
 - `GOVERNANCE.md` gained a branching-rules section + AI context maintenance rule
 - `AGENTS.md` now leads with `LLM.txt` as the single-context entry point
+- Standalone-safe npm scripts: `test`, `build`, `build:all` now delegate to internal
+  `:mono` variants inside the monorepo and degrade gracefully in scaffolded apps
+  (fixes `No workspaces found` failures). Powered by `scripts/template-scripts.cjs`,
+  which ships in the published template.
+- `workspaces` simplified to a single `packages/*` glob (no behavior change in the monorepo)
+- `app.json` version aligned to `1.0.4`
 - docs/changelog.md synced with root CHANGELOG.md
 
 ## [1.0.3]

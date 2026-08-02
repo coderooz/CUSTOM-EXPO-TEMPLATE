@@ -15,6 +15,11 @@
 ### Changed
 - opencode.jsonc now loads AGENTS.md + GOVERNANCE.md + LLM.txt as instructions
 - docs navigation updated (AI Governance, Showcase, Branching Strategy)
+- Standalone-safe npm scripts: `test`, `build`, `build:all` delegate to internal
+  `:mono` variants in the monorepo and degrade gracefully in scaffolded apps
+  (fixes `No workspaces found` failures). Powered by shipped `scripts/template-scripts.cjs`
+- `workspaces` simplified to a single `packages/*` glob
+- `app.json` version aligned to `1.0.4`
 
 ## 1.0.3
 

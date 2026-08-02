@@ -42,6 +42,7 @@
     "GOVERNANCE.md",
     "LLM.txt",
     "opencode.jsonc",
+    "scripts/template-scripts.cjs",
     ".prettierrc",
     ".editorconfig",
     ".nvmrc",
@@ -55,9 +56,12 @@
     "web": "expo start --web",
     "lint": "expo lint",
     "typecheck": "tsc --noEmit",
-    "test": "npm run test -w @coderooz/core -w @coderooz/feature-design-system -w @coderooz/feature-dynamic-pages",
-    "build": "npm run build -w @coderooz/core -w @coderooz/create-app -w @coderooz/cli && node scripts/bundle-assets.js",
-    "build:all": "npm run build && node scripts/validate-features.js",
+    "test": "node scripts/template-scripts.cjs test",
+    "build": "node scripts/template-scripts.cjs build",
+    "build:all": "node scripts/template-scripts.cjs build:all",
+    "test:mono": "npm run test -w @coderooz/core -w @coderooz/feature-design-system -w @coderooz/feature-dynamic-pages",
+    "build:mono": "npm run build -w @coderooz/core -w @coderooz/create-app -w @coderooz/cli && node scripts/bundle-assets.js",
+    "build:all:mono": "npm run build:mono && node scripts/validate-features.js",
     "postinstall": "expo install --fix"
   },
   "dependencies": {
@@ -108,20 +112,6 @@
     "access": "public"
   },
   "workspaces": [
-    "packages/core",
-    "packages/create-app",
-    "packages/cli",
-    "packages/feature-sqlite",
-    "packages/feature-camera",
-    "packages/feature-notifs",
-    "packages/feature-auth",
-    "packages/feature-biometrics",
-    "packages/feature-message",
-    "packages/feature-pages",
-    "packages/feature-icons",
-    "packages/feature-clerk",
-    "packages/feature-design-system",
-    "packages/feature-components",
-    "packages/feature-dynamic-pages"
+    "packages/*"
   ]
 }

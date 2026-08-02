@@ -176,6 +176,8 @@ Expo public vars are prefixed `EXPO_PUBLIC_` (e.g. `EXPO_PUBLIC_AUTH_TOKEN_KEY`)
 | `npm start` | Expo dev server |
 | `npm run lint` | ESLint via expo |
 | `npm run typecheck` | TypeScript `--noEmit` |
+| `npm test` | Vitest (runs any tests you add; exits 0 when none exist) |
+| `npm run build` / `npm run build:all` | Monorepo-only (bundle template + feature assets); prints a notice and exits 0 in standalone apps |
 | `npx @coderooz/cli add <feature>` | Add a feature |
 | `npx @coderooz/cli update` | Sync missing template files |
 

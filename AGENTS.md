@@ -193,6 +193,11 @@ npx @coderooz/cli list                     # list available features
 **Before finishing any task:** run `npm run lint`, `npm run typecheck`, `npm test`,
 `npm run build:all`.
 
+> In a **scaffolded standalone app** (no `packages/` dir), these scripts are guarded by
+> `scripts/template-scripts.cjs`: `npm test` runs Vitest, while `npm run build` /
+> `npm run build:all` print a monorepo-only notice and exit 0. The internal
+> `test:mono` / `build:mono` / `build:all:mono` variants are monorepo-only.
+
 ### Showcase example
 
 `examples/showcase/` is a runnable app demonstrating the showcase feature set (design
