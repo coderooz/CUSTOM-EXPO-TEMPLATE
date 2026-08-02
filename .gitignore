@@ -48,3 +48,9 @@ packages/create-app/public/
 
 # workspace (temporary AI-agent files — never commit)
 .workspace/
+
+# MCP runtime state (regenerated every session)
+.mcp-runtime.json
+
+# generated showcase app (built by scripts/build-example.js; lives on examples/showcase branch)
+examples/showcase/
