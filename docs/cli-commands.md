@@ -85,6 +85,17 @@ coderooz update [options]
 - `replace` — Overwrite all template files, whether they exist or not.
 - `update` — Smart-merge JSON configs (`package.json`, `app.json`, `tsconfig.json`), overwrite other files.
 
+**`update` merge semantics (safe by design):**
+
+- `package.json` — Only `dependencies` and `devDependencies` are merged from the
+  template (new packages added, existing versions kept on conflict). Identity and
+  structure — `name`, `version`, `private`, `main`, `scripts`, `workspaces`,
+  `files`, `publishConfig`, etc. — are preserved as-is from the project.
+- `app.json` — App identity (`name`, `version`, `slug`, `owner`) is preserved.
+  `expo.plugins` are unioned so feature-woven plugins are never dropped.
+- `tsconfig.json` — `compilerOptions` merge (template wins on conflicts);
+  `include`/`exclude` arrays are unioned.
+
 Examples:
 
 ```sh

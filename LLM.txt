@@ -40,7 +40,7 @@ npx @coderooz/cli list
 # Sync template files into an existing project
 npx @coderooz/cli update               # add-missing (default)
 npx @coderooz/cli update --mode replace  # overwrite everything
-npx @coderooz/cli update --mode update   # smart-merge JSON configs
+npx @coderooz/cli update --mode update   # smart-merge JSON configs (preserves app identity + feature plugins)
 ```
 
 Selecting a feature pulls in its `requires` automatically. `dynamic-pages` also installs

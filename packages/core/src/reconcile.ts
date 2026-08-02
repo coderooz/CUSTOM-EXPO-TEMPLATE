@@ -1,6 +1,6 @@
 import { readFileSync, writeFileSync, existsSync, mkdirSync, statSync, readdirSync, copyFileSync } from 'fs';
 import { join, dirname } from 'path';
-import { deepMerge } from './merge';
+import { deepMerge, mergeDependencies } from './merge';
 
 export type ReconcileMode = 'add-missing' | 'replace' | 'update';
 
@@ -63,6 +63,52 @@ export function readTemplateFilesList(packageJsonPath: string): string[] {
   return pkg.files as string[];
 }
 
+const APP_JSON_IDENTITY_KEYS = new Set(['name', 'version', 'slug', 'owner']);
+
+function toRecord(value: unknown): Record<string, string> {
+  return value && typeof value === 'object' && !Array.isArray(value)
+    ? (value as Record<string, string>)
+    : {};
+}
+
+function mergeConfigUpdates(
+  target: Record<string, unknown>,
+  source: Record<string, unknown>,
+  file: string,
+): Record<string, unknown> {
+  switch (file) {
+    case 'package.json': {
+      const result: Record<string, unknown> = { ...target };
+      result.dependencies = mergeDependencies(
+        toRecord(target.dependencies),
+        toRecord(source.dependencies),
+      );
+      result.devDependencies = mergeDependencies(
+        toRecord(target.devDependencies),
+        toRecord(source.devDependencies),
+      );
+      return result;
+    }
+    case 'app.json': {
+      const targetExpo = toRecord(target.expo) as Record<string, unknown>;
+      const sourceExpo = toRecord(source.expo) as Record<string, unknown>;
+      const expo = deepMerge(targetExpo, sourceExpo) as Record<string, unknown>;
+      for (const key of APP_JSON_IDENTITY_KEYS) {
+        if (key in targetExpo) expo[key] = targetExpo[key];
+      }
+      if (Array.isArray(sourceExpo.plugins)) {
+        const basePlugins = Array.isArray(targetExpo.plugins) ? targetExpo.plugins : [];
+        expo.plugins = deepMerge(basePlugins, sourceExpo.plugins, 'unique');
+      }
+      return { ...target, expo };
+    }
+    case 'tsconfig.json':
+      return deepMerge(target, source, 'unique') as Record<string, unknown>;
+    default:
+      return deepMerge(target, source) as Record<string, unknown>;
+  }
+}
+
 export function reconcileTemplate(options: ReconcileOptions): ReconcileResult {
   const { templateDir, projectDir, mode, templateFiles, skipPaths = [] } = options;
   const actions: FileAction[] = [];
@@ -93,7 +139,7 @@ export function reconcileTemplate(options: ReconcileOptions): ReconcileResult {
         const templateContent = readJsonSafe(templatePath);
         const targetContent = readJsonSafe(targetPath);
         if (templateContent && targetContent) {
-          const merged = deepMerge(targetContent, templateContent);
+          const merged = mergeConfigUpdates(targetContent, templateContent, relativePath);
           mkdirSync(dirname(targetPath), { recursive: true });
           writeFileSync(targetPath, JSON.stringify(merged, null, 2) + '\n');
           counts.merged++;

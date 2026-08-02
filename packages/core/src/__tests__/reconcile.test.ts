@@ -139,8 +139,100 @@ describe('reconcileTemplate', () => {
       });
       expect(result.merged).toBe(1);
       const merged = JSON.parse(readFileSync(join(projectDir, 'app.json'), 'utf-8'));
-      expect(merged.expo.name).toBe('App');
+      expect(merged.expo.name).toBe('MyApp');
       expect(merged.expo.version).toBe('1.0.0');
+    });
+
+    it('preserves package.json identity and merges dependencies additively', () => {
+      writeFileSync(join(projectDir, 'package.json'), JSON.stringify({
+        name: 'my-app',
+        version: '1.0.0',
+        private: true,
+        scripts: { start: 'expo start' },
+        workspaces: [],
+        dependencies: { expo: '~54.0.36', 'expo-image-picker': '~16.1.0' },
+        devDependencies: { typescript: '~5.9.2' },
+      }));
+      writeFileSync(join(templateDir, 'package.json'), JSON.stringify({
+        name: 'expo-template-coderooz',
+        version: '1.0.4',
+        scripts: { start: 'expo start', 'test:mono': 'npm test' },
+        workspaces: ['packages/*'],
+        dependencies: { expo: '~54.0.40', 'expo-sqlite': '~16.0.10' },
+        devDependencies: { typescript: '~5.9.2', vitest: '^4.0.0' },
+      }));
+      const result = reconcileTemplate({
+        templateDir,
+        projectDir,
+        mode: 'update',
+        templateFiles: ['package.json'],
+      });
+      expect(result.merged).toBe(1);
+      const merged = JSON.parse(readFileSync(join(projectDir, 'package.json'), 'utf-8'));
+      expect(merged.name).toBe('my-app');
+      expect(merged.version).toBe('1.0.0');
+      expect(merged.private).toBe(true);
+      expect(merged.scripts).toEqual({ start: 'expo start' });
+      expect(merged.workspaces).toEqual([]);
+      expect(merged.dependencies.expo).toBe('~54.0.36');
+      expect(merged.dependencies['expo-image-picker']).toBe('~16.1.0');
+      expect(merged.dependencies['expo-sqlite']).toBe('~16.0.10');
+      expect(merged.devDependencies.typescript).toBe('~5.9.2');
+      expect(merged.devDependencies.vitest).toBe('^4.0.0');
+    });
+
+    it('preserves app identity and unions plugins', () => {
+      writeFileSync(join(projectDir, 'app.json'), JSON.stringify({
+        expo: {
+          name: 'MyApp',
+          version: '1.0.0',
+          slug: 'my-app',
+          plugins: ['expo-router', 'expo-image-picker'],
+        },
+      }));
+      writeFileSync(join(templateDir, 'app.json'), JSON.stringify({
+        expo: {
+          name: 'App',
+          version: '1.0.4',
+          slug: 'custom-expo-coderooz',
+          plugins: ['expo-sqlite', 'expo-image-picker'],
+        },
+      }));
+      const result = reconcileTemplate({
+        templateDir,
+        projectDir,
+        mode: 'update',
+        templateFiles: ['app.json'],
+      });
+      expect(result.merged).toBe(1);
+      const merged = JSON.parse(readFileSync(join(projectDir, 'app.json'), 'utf-8'));
+      expect(merged.expo.name).toBe('MyApp');
+      expect(merged.expo.version).toBe('1.0.0');
+      expect(merged.expo.slug).toBe('my-app');
+      expect(merged.expo.plugins).toEqual(['expo-router', 'expo-image-picker', 'expo-sqlite']);
+    });
+
+    it('unions tsconfig include/exclude arrays', () => {
+      writeFileSync(join(projectDir, 'tsconfig.json'), JSON.stringify({
+        compilerOptions: { strict: true, paths: { '@/*': ['./src/*'] } },
+        include: ['src', 'App.tsx'],
+      }));
+      writeFileSync(join(templateDir, 'tsconfig.json'), JSON.stringify({
+        compilerOptions: { strict: true, jsx: 'react-jsx' },
+        include: ['App.tsx', 'index.ts'],
+      }));
+      const result = reconcileTemplate({
+        templateDir,
+        projectDir,
+        mode: 'update',
+        templateFiles: ['tsconfig.json'],
+      });
+      expect(result.merged).toBe(1);
+      const merged = JSON.parse(readFileSync(join(projectDir, 'tsconfig.json'), 'utf-8'));
+      expect(merged.compilerOptions.strict).toBe(true);
+      expect(merged.compilerOptions.jsx).toBe('react-jsx');
+      expect(merged.compilerOptions.paths).toEqual({ '@/*': ['./src/*'] });
+      expect(merged.include).toEqual(['src', 'App.tsx', 'index.ts']);
     });
 
     it('merges dependencies within JSON configs', () => {

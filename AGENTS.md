@@ -160,7 +160,7 @@ npx @coderooz/cli list                     # list available features
 `update` modes:
 - `add-missing` (default) — only add files that don't exist
 - `replace` — overwrite all template files
-- `update` — smart-merge JSON configs, overwrite other files
+- `update` — smart-merge JSON configs, overwrite other files (preserves app identity + feature plugins; see `docs/cli-commands.md`)
 
 ---
 

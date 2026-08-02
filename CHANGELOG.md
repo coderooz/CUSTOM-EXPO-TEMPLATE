@@ -76,7 +76,7 @@
 - **CLI update command** (`coderooz update`)
   - `coderooz update` — add missing template files
   - `coderooz update --mode replace` — overwrite everything
-  - `coderooz update --mode update` — smart-merge JSON, overwrite rest
+  - `coderooz update --mode update` — smart-merge JSON, overwrite rest (preserves app identity + feature plugins)
 - Vitest test suite (33 tests) for core modules (manifest, merge, files, reconcile)
 - README.md for all 6 packages
 - Updated docs/ site with monorepo, CLI, and feature package documentation

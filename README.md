@@ -54,7 +54,7 @@ cd my-app
 npx @coderooz/cli add camera,notifs      # comma-separated works too
 npx @coderooz/cli update                 # add missing template files
 npx @coderooz/cli update --mode replace  # overwrite everything
-npx @coderooz/cli update --mode update   # smart-merge configs
+npx @coderooz/cli update --mode update   # smart-merge configs (preserves app identity + feature plugins)
 npx @coderooz/cli list                   # list available features
 ```
 
