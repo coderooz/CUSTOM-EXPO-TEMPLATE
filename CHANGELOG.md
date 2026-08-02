@@ -1,5 +1,28 @@
 # Changelog
 
+## [1.2.0](https://github.com/coderooz/expo-template-coderooz/compare/v1.1.0...v1.2.0) (2026-08-02)
+
+
+### Features
+
+* **cli:** add CLI and create-app scaffold packages ([769f7ca](https://github.com/coderooz/expo-template-coderooz/commit/769f7caa4b37780cda3525d6c894464633b16f50))
+* **core:** add core package with types, validators, and manifest system ([4ef0427](https://github.com/coderooz/expo-template-coderooz/commit/4ef04277bc33a8b39c789a24c17aeaeb45d27d87))
+* **feature:** add 8 base feature packages ([0d3db66](https://github.com/coderooz/expo-template-coderooz/commit/0d3db6670f2ddd966bfe16bf8d99135dc1dd3641))
+* **feature:** add clerk auth, design system, components, and dynamic page engine ([ed8b523](https://github.com/coderooz/expo-template-coderooz/commit/ed8b5232c5fabb9d8050783334591809483c4988))
+* **governance:** add AI governance layer (AGENTS, GOVERNANCE, LLM) ([47f90a3](https://github.com/coderooz/expo-template-coderooz/commit/47f90a3650080f5e4d449475832201bc7dca2c2e))
+* **packages:** update feature manifests, template sources, core hooks, cli commands ([d0b95d5](https://github.com/coderooz/expo-template-coderooz/commit/d0b95d5a67846876e360edfcf740e54e4ab426b3))
+* **scripts:** add asset bundling and release validation scripts ([3f37436](https://github.com/coderooz/expo-template-coderooz/commit/3f37436a3e99cf72763f69c6ea59c0fd15ce5094))
+* **tooling:** config-driven example builder, examples-sync workflow, vN.x release triggers ([f0895f7](https://github.com/coderooz/expo-template-coderooz/commit/f0895f78fb22f133d287c1cb7de292b08016b7ad))
+
+
+### Bug Fixes
+
+* **build:** validate features via validate-features.js; sync coderooz.json manifests to 1.0.4 ([6def330](https://github.com/coderooz/expo-template-coderooz/commit/6def3306e06961853845ec5532cf1a0577216696))
+* **camera:** use expo-camera v17 permission API and valid MediaType values ([047f4d3](https://github.com/coderooz/expo-template-coderooz/commit/047f4d38f5de6d6067151a452fea85a9b9784498))
+* **showcase:** give DynamicPages demo flex: 1 so ScrollView renders; add emulator verification report ([84b27a5](https://github.com/coderooz/expo-template-coderooz/commit/84b27a57de7e02f920a3c1556092e37cf0c0c489))
+* **template:** make npm scripts standalone-safe in scaffolded apps ([ed11279](https://github.com/coderooz/expo-template-coderooz/commit/ed11279f12dca5dbc9df32b59186704c1282bdd7))
+* **update:** safe-merge standalone configs ([a4a7d4b](https://github.com/coderooz/expo-template-coderooz/commit/a4a7d4bc48c741e5e4275158228a11f9f6c3ff31))
+
 ## [1.1.0](https://github.com/coderooz/expo-template-coderooz/compare/v1.0.3...v1.1.0) (2026-08-02)
 
 
