@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { mkdirSync, writeFileSync, rmSync, existsSync, readFileSync, readdirSync } from 'fs';
-import { join } from 'path';
+import { dirname, join } from 'path';
 import { tmpdir } from 'os';
 import { weaveFeature } from '../hooks';
 import { loadManifest } from '../manifest';
@@ -29,7 +29,7 @@ function makeFeature(dirName: string, manifest: FeatureManifest, templateFiles: 
   const templateDir = join(featureDir, 'template');
   for (const [relPath, content] of Object.entries(templateFiles)) {
     const filePath = join(templateDir, relPath);
-    mkdirSync(join(templateDir, relPath.split(/[\\/]/).slice(0, -1).join('\\')), { recursive: true });
+    mkdirSync(dirname(filePath), { recursive: true });
     writeFileSync(filePath, content);
   }
 }
