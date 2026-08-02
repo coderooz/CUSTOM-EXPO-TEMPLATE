@@ -3,6 +3,7 @@ name: Release
 on:
   push:
     branches: [main, "v[0-9]+.x"]
+  workflow_dispatch:
 
 permissions:
   contents: write
