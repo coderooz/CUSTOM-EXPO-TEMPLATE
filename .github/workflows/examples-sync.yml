@@ -46,11 +46,7 @@ jobs:
             name=$(node -p "require('./' + process.argv[1]).name" "$cfg")
             branch="examples/${name}"
             node scripts/build-example.js --config "$cfg"
-            if git rev-parse --verify "origin/${branch}" > /dev/null 2>&1; then
-              git checkout "${branch}"
-            else
-              git checkout --orphan "${branch}"
-            fi
+            git checkout -B "${branch}" "${GITHUB_SHA}"
             # Remove stale monorepo files, keep only the generated app contents.
             git rm -rf --quiet . 2>/dev/null || true
             shopt -s dotglob
