@@ -1,0 +1,23 @@
+{
+  "name": "@coderooz/feature-camera",
+  "version": "1.0.4",
+  "description": "Camera, image picker, and gallery for Coderooz Expo projects",
+  "license": "MIT",
+  "author": "Coderooz (https://github.com/coderooz)",
+  "files": ["coderooz.json", "template"],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/coderooz/expo-template-coderooz.git"
+  },
+  "bugs": {
+    "url": "https://github.com/coderooz/expo-template-coderooz/issues"
+  },
+  "homepage": "https://coderooz.github.io/expo-template-coderooz/",
+  "keywords": ["expo", "coderooz", "camera", "react-native", "image-picker"],
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

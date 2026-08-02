@@ -1,0 +1,12 @@
+{
+  "name": "dynamic-pages",
+  "version": "1.0.4",
+  "description": "Dynamic page builder: config-driven runtime page resolution with template/component/action registries, SQLite caching, and hot-reload",
+  "dependencies": {
+    "zod": "^3.24.0",
+    "expo-sqlite": "~16.0.9",
+    "react-native-reanimated": "~4.1.1"
+  },
+  "requires": ["design-system", "components", "sqlite"],
+  "provides": ["page-engine", "dynamic-screens", "built-in-templates"]
+}

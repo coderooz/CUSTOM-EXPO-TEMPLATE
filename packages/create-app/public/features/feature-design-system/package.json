@@ -1,0 +1,23 @@
+{
+  "name": "@coderooz/feature-design-system",
+  "version": "1.0.4",
+  "description": "Design system foundation: tokens, colors, typography, theme engine, and primitives for Coderooz Expo projects",
+  "license": "MIT",
+  "author": "Coderooz (https://github.com/coderooz)",
+  "files": ["coderooz.json", "template"],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/coderooz/expo-template-coderooz.git"
+  },
+  "bugs": {
+    "url": "https://github.com/coderooz/expo-template-coderooz/issues"
+  },
+  "homepage": "https://coderooz.github.io/expo-template-coderooz/",
+  "keywords": ["expo", "coderooz", "design-system", "theme", "tokens", "react-native"],
+  "engines": { "node": ">=18.0.0" },
+  "publishConfig": { "access": "public" },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  }
+}

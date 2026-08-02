@@ -1,0 +1,14 @@
+{
+  "name": "notifs",
+  "version": "1.0.4",
+  "description": "Push and local notifications with channel management, scheduling, and permission handling",
+  "hooks": {
+    "env": {
+      "EXPO_PUBLIC_NOTIF_CHANNEL_ID": "default"
+    }
+  },
+  "dependencies": {
+    "expo-notifications": "~0.32.13",
+    "expo-device": "~8.0.9"
+  }
+}

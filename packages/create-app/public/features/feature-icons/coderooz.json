@@ -1,0 +1,13 @@
+{
+  "name": "icons",
+  "version": "1.0.4",
+  "description": "Typed icon system with vector icons, SVG registry, and icon button components",
+  "hooks": {
+    "env": {
+      "EXPO_PUBLIC_ICON_DEFAULT_FAMILY": "Ionicons"
+    }
+  },
+  "dependencies": {
+    "@expo/vector-icons": "^15.0.3"
+  }
+}

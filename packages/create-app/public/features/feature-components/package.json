@@ -1,0 +1,19 @@
+{
+  "name": "@coderooz/feature-components",
+  "version": "1.0.4",
+  "description": "Reusable component library for Coderooz Expo projects: buttons, inputs, interactions, states, and layouts",
+  "license": "MIT",
+  "author": "Coderooz (https://github.com/coderooz)",
+  "files": ["coderooz.json", "template"],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/coderooz/expo-template-coderooz.git"
+  },
+  "bugs": {
+    "url": "https://github.com/coderooz/expo-template-coderooz/issues"
+  },
+  "homepage": "https://coderooz.github.io/expo-template-coderooz/",
+  "keywords": ["expo", "coderooz", "components", "ui", "react-native"],
+  "engines": { "node": ">=18.0.0" },
+  "publishConfig": { "access": "public" }
+}

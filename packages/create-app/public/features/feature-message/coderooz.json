@@ -1,0 +1,14 @@
+{
+  "name": "message",
+  "version": "1.0.4",
+  "description": "SMS sending, OTP auto-read from clipboard, phone validation, and messaging utilities",
+  "hooks": {
+    "env": {
+      "EXPO_PUBLIC_MESSAGE_ENABLED": "true"
+    }
+  },
+  "dependencies": {
+    "expo-sms": "~13.1.0",
+    "expo-clipboard": "~8.1.0"
+  }
+}

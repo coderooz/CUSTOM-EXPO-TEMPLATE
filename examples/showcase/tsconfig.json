@@ -1,0 +1,40 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "strict": true,
+    "jsx": "react-native",
+    "allowJs": false,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "types": ["nativewind/types"],
+    "tsBuildInfoFile": ".tsbuildinfo",
+    "baseUrl": ".",
+    "paths": {
+      "@/components/*" : ["src/components/*"],
+      "@/lib/*" : ["src/lib/*"],
+      "@/screens/*" : ["src/screens/*"],
+      "@/context/*" : ["src/context/*"],
+      "@/hooks/*" : ["src/hooks/*"],
+      "@/navigation/*": ["src/navigation/*"],
+      "@/theme/*"     : ["src/theme/*"],
+      "@/services/*"  : ["src/services/*"],
+      "@/primitives/*": ["src/primitives/*"],
+      "@/templates/*" : ["src/templates/*"],
+      "@/data/*"      : ["src/data/*"]
+    }
+  },
+  "exclude": [
+    "packages/create-app/public",
+    "packages/*/dist",
+    "packages/feature-*/template",
+    "packages/feature-*/tests",
+    "examples",
+    "scripts/showcase-overlay"
+  ],
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    "nativewind-env.d.ts"
+  ]
+}

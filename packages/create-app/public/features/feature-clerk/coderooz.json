@@ -1,0 +1,17 @@
+{
+  "name": "clerk",
+  "version": "1.0.4",
+  "description": "Clerk authentication with sign-in, sign-up, OAuth, user profile, and session management",
+  "hooks": {
+    "env": {
+      "EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY": "pk_test_..."
+    }
+  },
+  "dependencies": {
+    "@clerk/expo": "^3.6.0",
+    "expo-secure-store": "~14.2.0",
+    "expo-auth-session": "~7.0.9",
+    "expo-web-browser": "~14.1.0"
+  },
+  "devDependencies": {}
+}
