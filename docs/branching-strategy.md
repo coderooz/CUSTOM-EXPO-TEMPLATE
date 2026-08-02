@@ -69,7 +69,6 @@ Current automation (already in place) drives releases from `main`:
 2. **Release Please** (`release.yml`) opens a release PR, bumps versions, tags a release,
    and runs `npm run build` + `npm publish` on release creation
 3. **Auto-tag** (`auto-tag.yml`) tags `vX.Y.Z` on `package.json` bumps
-4. **Publish** (`publish.yml`) publishes the template package to npm on relevant changes
 
 Adding a release maintenance line:
 
@@ -78,11 +77,10 @@ Adding a release maintenance line:
 - Patch fixes go to `v1.x` and are tagged `v1.0.1`, `v1.0.2`, …
 - A new minor (or major) moves forward on `main` only
 
-**Recommended change:** narrow `release.yml` / `publish.yml` triggers so they also run
-on pushes to `vN.x` (for patch releases) without double-publishing on `main`.
-
-**Status: implemented.** `release.yml` and `publish.yml` now trigger on `main` and
-`v[0-9]+.x`.
+**Single release path:** `release.yml` (Release Please) is the sole release mechanism. It runs on
+`main` and `v[0-9]+.x`, opens release PRs, tags releases, and publishes to npm on release creation.
+The old `publish.yml` (auto patch-bump + publish on `main`) was removed — it double-versioned
+alongside Release Please and never wired npm auth.
 
 ---
 
