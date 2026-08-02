@@ -27,8 +27,8 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@coderooz/core": "1.0.3",
-    "@coderooz/create-app": "1.0.3",
+    "@coderooz/core": "1.0.4",
+    "@coderooz/create-app": "1.0.4",
     "commander": "^12.0.0"
   },
   "devDependencies": {
