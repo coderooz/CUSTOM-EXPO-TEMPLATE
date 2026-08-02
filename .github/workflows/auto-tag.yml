@@ -6,6 +6,9 @@ on:
     paths:
       - "package.json"
 
+permissions:
+  contents: write
+
 jobs:
   tag:
     runs-on: ubuntu-latest
@@ -13,7 +16,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
 
       - name: Read version
         id: version
