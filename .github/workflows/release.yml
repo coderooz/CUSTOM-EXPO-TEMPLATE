@@ -46,4 +46,4 @@ jobs:
         if: steps.release.outputs.release_created == 'true'
         run: npm publish --provenance --access public
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.AUTOMATION_NPM_TOKEN }}
