@@ -83,7 +83,7 @@
     "expo-device": "~8.0.10",
     "expo-linking": "~8.0.12",
     "expo-navigation-bar": "~5.0.10",
-    "expo-notifications": "~0.32.17",
+    "expo-notifications": "~57.0.8",
     "expo-splash-screen": "~31.0.13",
     "expo-sqlite": "~16.0.10",
     "expo-status-bar": "~3.0.9",
